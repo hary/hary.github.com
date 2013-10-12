@@ -9,7 +9,7 @@ This is solely my humble notes, and I blog this just to make documentation that 
 
 <!-- more -->
 ###Redhat Cluster Suite or High Availability Add-on
-Red Hat Cluster Suite, from the big picture, is the same as [VCS](http://hary.my.id/blog/vcs) (Veritas Cluster Service), a `High Availability` software, but of course they are different with each other, mainly in the configuration (I found it difficult to configure the Redhat Cluster).
+Red Hat Cluster Suite, from the big picture, is the same as [VCS](/en/vcs) (Veritas Cluster Service), a `High Availability` software, but of course they are different with each other, mainly in the configuration (I found it difficult to configure the Redhat Cluster).
 
 We are planning on using load balancing cluster. 
 
