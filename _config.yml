@@ -1,4 +1,0 @@
-permalink: /:categories/:title.html
-paginate: 5
-paginate_path: "/:num"
-
