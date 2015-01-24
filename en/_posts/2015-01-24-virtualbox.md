@@ -1,7 +1,7 @@
 ---
 layout: post
 lang: en
-title: Vrtualbox: Raw Disk Access
+title: Vrtualbox Raw Disk Access
 ---
 <!-- more -->
 
