@@ -1,7 +1,7 @@
 ---
 layout: post
 lang: en
-title: Vrtualbox Raw Disk Access
+title: Virtualbox Raw Disk Access
 ---
 <!-- more -->
 My current laptop is dual boot OS and normally, I use linux as my daily OS. 
@@ -91,5 +91,3 @@ then type:
     DISKPART> exit
 
 Now reboot to our virtualbox, enjoy.
-
-PS: need to edit this later.
