@@ -13,6 +13,7 @@ You know, my laptop came with original windows 7 home edition, after that I inst
 The using of physical drive in virtualbox is called virtualbox raw disk access. you can google it.
 
 Here is my partion layout :
+
     Disk /dev/sda: 232.9 GiB, 250059350016 bytes, 488397168 sectors
     Units: sectors of 1 * 512 = 512 bytes
     Sector size (logical/physical): 512 bytes / 512 bytes
@@ -30,22 +31,33 @@ Here is my partion layout :
 I know, it's old laptop the disk only 250G, but it's been greate to have it. okay, lets cut to the chase.
 step to create virtualbox machine with raw disk
 create bootloader:
+
     dd if=/dev/sda2 of=boot.mbr bs=512 count=1
 
+
 create virtualbox:
+
     VBoxManage createvm --name windows7 --ostype Windows7_64 --register
 
+
 add settings, such as memory, nic:
+
     VBoxManage modifyvm "windows7" --memory 1024 --acpi on --boot1 disk --nic1 nat
 
 set IDE controller use ICH6 :
+
     VBoxManage storagectl "windows7" --name "IDE Controller" --add ide --controller ICH6
 
+
 create vmdk:
+
     VBoxManage internalcommands createrawvmdk -filename /home/hary/windows7.vmdk -rawdisk /dev/sda -partitions 2 -mbr /home/hary/boot.mbr -relative
 
+
 add the storage to our virtualbox:
+
     VBoxManage storageattach windows7 --storagectl "IDE Controller"  --port 0 --device 0 --type hdd --medium /home/hary/windows7.vmdk
+
 
 We will need iso/dvd of windows installer. mount it so it become first boot of our virtualbox.
 Start the virtualbox and boot ke dvd. then open windows command line by pressing `SHIFT+F10` type:
@@ -58,10 +70,12 @@ go to :
 
     HKEY_LOCAL_MACHINE\Computer_System\MountedDevices
 
-write dow the value of "\DosDevices\C:" for example :
+write dow the value of `"\DosDevices\C:"` for example :
+
     ab cd ef gh
 
 then type:
+
     diskpart
     DISKPART> select disk 0
     DISKPART> uniqueid disk id=ghefcdab
