@@ -4,12 +4,14 @@ lang: en
 title: Vrtualbox Raw Disk Access
 ---
 <!-- more -->
-
 My current laptop is dual boot OS and normally, I use linux as my daily OS. 
+
 Sometimes there are some applications that need to be run on Windows. 
 So I use virtualbox and normally, I create new virtualbox machine and create virtualbox disk.
+
 Later I realize that why dont I use the microsoft windows from the disk. 
 You know, my laptop came with original windows 7 home edition, after that I install fedora 19 until now it becomes fedora 21.
+
 The using of physical drive in virtualbox is called virtualbox raw disk access. you can google it.
 
 Here is my partion layout :
@@ -28,8 +30,12 @@ Here is my partion layout :
     /dev/sda4       480006142 488396799   8390658     4G  5 Extended
     /dev/sda5       480006144 488396799   8390656     4G 82 Linux swap / Solaris
 
-I know, it's old laptop the disk only 250G, but it's been greate to have it. okay, lets cut to the chase.
-step to create virtualbox machine with raw disk
+I know, it's old laptop the disk only 250G, but it's been greate to have it. 
+
+okay, lets cut to the chase.
+
+Steps to create virtualbox machine with raw disk
+
 create bootloader:
 
     dd if=/dev/sda2 of=boot.mbr bs=512 count=1
@@ -59,8 +65,11 @@ add the storage to our virtualbox:
     VBoxManage storageattach windows7 --storagectl "IDE Controller"  --port 0 --device 0 --type hdd --medium /home/hary/windows7.vmdk
 
 
-We will need iso/dvd of windows installer. mount it so it become first boot of our virtualbox.
-Start the virtualbox and boot ke dvd. then open windows command line by pressing `SHIFT+F10` type:
+We will need iso/dvd of windows installer. 
+
+Mount it so it become first boot of our virtualbox.
+
+Start the virtualbox and boot ke dvd, then open windows command line by pressing `SHIFT+F10` type:
 
     bootrec /FixMbr
     reg load HKLM\Computer_System C:\Windows\system32\config\system
