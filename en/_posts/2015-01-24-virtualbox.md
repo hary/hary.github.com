@@ -6,15 +6,15 @@ title: Virtualbox Raw Disk Access
 <!-- more -->
 My current laptop is dual boot OS and normally, I use linux as my daily OS. 
 
-Sometimes there are some applications that need to be run on Windows. 
-So I use virtualbox and normally, I create new virtualbox machine and create virtualbox disk.
+Sometimes there are some applications that need to be run on Microsoft Windows. 
+So I use virtualbox and I create new virtualbox machine along with virtualbox disk.
 
 Later I realize that why don't I use the Microsoft Windows from the disk. 
-You know, my laptop came with original windows 7 home edition, after that I install fedora 19 until now it became fedora 21.
+You know, my laptop came with original Windows 7 Home Edition, after that I install fedora 19 until now it became fedora 21.
 
-The using of physical drive in virtualbox is called virtualbox raw disk access. you can google it.
+The using of physical drive in virtualbox is called virtualbox raw disk access. You can google them.
 
-Here is my partion layout :
+Here is my disk partition layout :
 
     Disk /dev/sda: 232.9 GiB, 250059350016 bytes, 488397168 sectors
     Units: sectors of 1 * 512 = 512 bytes
@@ -30,7 +30,7 @@ Here is my partion layout :
     /dev/sda4       480006142 488396799   8390658     4G  5 Extended
     /dev/sda5       480006144 488396799   8390656     4G 82 Linux swap / Solaris
 
-I know, it's old laptop the disk only 250G, but it's been great to have it. 
+I know, it's an old laptop, the disk is only 250G, but it's been great to have it. 
 
 Okay, let's cut to the chase.
 
@@ -46,7 +46,7 @@ create virtualbox :
     VBoxManage createvm --name windows7 --ostype Windows7_64 --register
 
 
-add settings, such as memory, nic :
+add settings, such as memory, NIC :
 
     VBoxManage modifyvm "windows7" --memory 1024 --acpi on --boot1 disk --nic1 nat
 
@@ -81,7 +81,7 @@ Go to :
 
     HKEY_LOCAL_MACHINE\Computer_System\MountedDevices
 
-write down the value of `"\DosDevices\C:"`. 
+and write down the value of `"\DosDevices\C:"`. 
 
 For example :
 
