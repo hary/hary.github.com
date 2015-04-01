@@ -11,9 +11,9 @@ Sometimes there are some applications that need to be run on Microsoft Windows.
 So I use virtualbox and I create new virtualbox machine along with virtualbox disk.
 
 Later I realize that why don't I use the Microsoft Windows from the disk. 
-You know, my laptop came with original Windows 7 Home Edition, after that I install fedora 19 until now it became fedora 21.
+You know, my laptop came with original Windows 7 Home Edition. After that, I install fedora 19 until now it became fedora 21.
 
-The using of physical drive in virtualbox is called virtualbox raw disk access. You can google them.
+The using of physical drive in virtualbox is called virtualbox raw disk access. You can google them, hehe.
 
 Here is my disk partition layout :
 
