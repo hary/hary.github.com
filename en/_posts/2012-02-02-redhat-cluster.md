@@ -8,7 +8,9 @@ First of all, `the disclaimer`, hehe :
 This is solely my humble notes, and I blog this just to make documentation that might be useful for later.
 
 <!-- more -->
+
 ###Redhat Cluster Suite or High Availability Add-on
+
 Red Hat Cluster Suite, from the big picture, is the same as [VCS](http://hary.my.id/blog/vcs) (Veritas Cluster Service), a `High Availability` software, but of course they are different with each other, mainly in the configuration (I found it difficult to configure the Redhat Cluster).
 
 We are planning on using load balancing cluster. 
@@ -17,6 +19,7 @@ Load balancing cluster send network request to multiple nodes to balance the req
 The outside of the cluster would not know that there's a problem in cluster.
 
 ###Installing Red Hat Cluster Suite.
+
 We use Centos 6 for testing, but basically it's the same as RHEL, even the packages and pretty much everything else.
 
 The minimum packages for Red Hat Cluster Suite (RHCS) are: 
@@ -24,6 +27,7 @@ The minimum packages for Red Hat Cluster Suite (RHCS) are:
 2. rgmanager
 
 ####Install Centos OS
+
 Download Centos installer ISO from [www.centos.org](http://www.centos.org).
 
 Now, we assume that you already install the Centos 6.x (the latest is 6.4).
@@ -37,7 +41,6 @@ After the OS is installed, we install the `High Availability` packages (if not y
 Make sure each node can communicate with each other.
 
 We can define other node in /etc/hosts :
-
 
     # vi /etc/hosts
     192.168.1.170   node170

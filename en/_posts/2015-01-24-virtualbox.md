@@ -2,10 +2,10 @@
 layout: post
 lang: en
 title: Virtualbox Raw Disk Access
-date: 2015-01-24
 ---
-<!-- more -->
 My current laptop is dual boot OS and normally, I use linux as my daily OS. 
+
+<!-- more -->
 
 Sometimes there are some applications that need to be run on Microsoft Windows. 
 So I use virtualbox and I create new virtualbox machine along with virtualbox disk.
