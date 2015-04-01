@@ -2,6 +2,7 @@
 layout: post
 lang: en
 title: Virtualbox Raw Disk Access
+date: 2015-01-24
 ---
 <!-- more -->
 My current laptop is dual boot OS and normally, I use linux as my daily OS. 
