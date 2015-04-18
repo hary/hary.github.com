@@ -5,9 +5,9 @@ title: Red Hat Cluster
 ---
 First of all, `the disclaimer`, hehe :
 
-This is solely my humble notes, and I blog this just to make documentation that might be useful for later.
-
 <!-- more -->
+
+This is solely my humble notes, and I blog this just to make documentation that might be useful for later.
 
 ###Redhat Cluster Suite or High Availability Add-on
 
