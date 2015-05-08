@@ -1,0 +1,348 @@
+upgrade Fedora 20 -> Fedora 21
+# rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-21-$(uname -i)
+# yum update yum
+# yum clean all
+# yum --releasever=21 distro-sync
+
+Fedora 21 split into different products. Execute one of those commands:
+# yum install system-release-workstation
+# yum install system-release-cloud
+# yum install system-release-server
+
+or this one if you want to have non-productized Fedora
+# yum install system-release-nonproduct
+
+If you change your mind, you can easily switch between products.
+# yum swap system-release-cloud system-release-workstation
+
+Swapping to workstation sometimes may require you to use yum shell as it may require multiple packages to be swapped.
+
+Many people report (e.g. bugs 1035326, 1044184, 1002331) that after upgrade some files have incorect SELinux context. It is recommend to run:
+
+# restorecon -R /
+
+
+
+dnf clean all && dnf update --refresh
+
+yum swap fedora-release-workstation fedora-release-server --disablerepo=fedora --disablerepo=updates --enablerepo=rawhide --disablerepo=updates-testing
+
+yum -y groups install "GNOME Desktop" 
+
+
+
+
+
+routeadd telkomsel dzone + calbe:
+netstat -nr
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface
+0.0.0.0         10.251.99.254   0.0.0.0         UG        0 0          0 p255p1
+10.2.154.84     10.251.99.254   255.255.255.255 UGH       0 0          0 p255p1
+10.10.10.0      0.0.0.0         255.255.255.0   U         0 0          0 vboxnet0
+10.251.99.0     0.0.0.0         255.255.255.0   U         0 0          0 p255p1
+172.16.32.0     0.0.0.0         255.255.248.0   U         0 0          0 wlp3s0
+
+route del -net 0.0.0.0 gw 10.251.99.254
+route add default gw 172.16.39.254
+route add -net 10.0.0.0 netmask 255.0.0.0 gw 10.251.99.254
+
+netstat -nr
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface
+0.0.0.0         172.16.39.254   0.0.0.0         UG        0 0          0 wlp3s0
+0.0.0.0         10.251.99.254   0.0.0.0         UG        0 0          0 p255p1
+10.0.0.0        10.251.99.254   255.0.0.0       UG        0 0          0 p255p1
+10.2.154.84     10.251.99.254   255.255.255.255 UGH       0 0          0 p255p1
+10.10.10.0      0.0.0.0         255.255.255.0   U         0 0          0 vboxnet0
+10.251.99.0     0.0.0.0         255.255.255.0   U         0 0          0 p255p1
+172.16.32.0     0.0.0.0         255.255.248.0   U         0 0          0 wlp3s0
+
+
+change login manager:
+systemctl disable lightdm.service
+systemctl enable  gdm.service
+
+
+$ /usr/bin/VBoxManage setextradata global GUI/Customizations MenuBar,StatusBar
+ 
+$ VBoxManage setextradata global GUI/Customizations noMenuBar,noStatusBar
+
+
+
+sick of grouping alt-tab? to enable old classic alt-tab switching go to https://extensions.gnome.org/local/ and enable it there..
+
+if gnome-shell-extensions-alternate-tab is not availabe yet, install it with :
+yum install gnome-shell-extensions-alternate-tab
+
+
+
+check memory di solaris:
+http://www.gurkulindia.com/main/2011/10/solaris-memory-usage-checking-and-troubleshooting/
+
+# echo "::memstat" | mdb -k
+# prstat -s size # sorted by userland virtual memory consumption
+# prstat -s rss # sorted by userland phyiscal memory consumption
+
+
+disable crontab to send email
+edit /etc/sysconfig/crond :
+CRONDARGS='-m off'
+
+
+$ vncviewer -via lbapop@192.168.0.174 localhost:1
+
+
+
+
+[JKT:trbt@FrontUI05:/TRBT]sqlplus rbtrpt/rbtrpt@rpt1a/RBTRPT
+
+
+mv /etc/localtime /etc/localtime.ori
+[root@TB115 ~]# ln -s /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
+[root@TB115 ~]# date 010816562015  ->> MMDDhhmmYYYY
+
+[root@TB115 ~]# hwclock --systohc
+[root@TB115 ~]# hwclock 
+Thu 08 Jan 2015 04:56:43 PM WIB  -0.984784 seconds
+[root@TB115 ~]# date
+Thu Jan  8 16:56:43 WIB 2015
+[root@TB115 ~]# 
+
+
+
+hchmcp
+[JKT:trbt@TB171:/TRBT]useradd hrbt
+[JKT:root@TB171:/root]passwd hrbt
+[JKT:root@TB171:/root]usermod -u 111 prbt
+
+[JKT:root@TB171:/root]usermod -g 111 prbt
+[JKT:root@TB171:/root]usermod -m -d /PRBT prbt
+
+
+
+select * from dba_role_privs where granted_role='DBA';
+
+select username from dba_users;
+
+
+SELECT table_name FROM dba_tables where owner='HCHMCP'; 
+
+
+
+
+sort rpm by size
+$ rpm -qa --queryformat '%10{size} - %-25{name} \t %{version}\n' | sort -n
+
+
+find big file:
+# du -a /home/ > big_files.txt
+# sort -nk1 big_files.txt  >> big_sorted.txt
+
+
+# alternatives --config java
+
+There are 3 programs which provide 'java'.
+
+  Selection    Command
+-----------------------------------------------
+   1           /usr/java/jdk1.7.0_25/bin/java
+*  2           /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.25-5.b18.fc21.x86_64/jre/bin/java
+ + 3           /usr/java/latest/jre/bin/java
+
+# update-alternatives --config java
+
+
+# update-alternatives --remove "java" "/usr/java/jdk1.7.0_25/bin/java"
+
+
+
+
+sort by column 2:
+du -s /home | sort -nk2
+
+
+
+
+ntp date:
+to sync:
+[root@FrontUI07 ~]# ntpdate -q oam
+
+to check
+[JKT:trbt@FrontUI07:/TRBT]ssh frontui06 date; ssh frontui07 date
+
+ntpstat
+ntpq -p
+ntpq -pn
+http://www.cyberciti.biz/faq/linux-unix-bsd-is-ntp-client-working/
+
+[JKT:trbt@FrontUI07:/TRBT]ssh frontui05 date; ssh frontui06 date; date; ssh oam date; ssh ccs1a date; ssh ccs1b date; ssh ccs1b_pkb date; ssh ccs1a_pkb date; ssh ccs1a_sby date; ssh ccs1b_sby date
+Fri Jan 16 01:27:35 WIB 2015 front5
+Fri Jan 16 01:27:36 WIB 2015front6
+Fri Jan 16 01:27:36 WIB 2015 front7
+Fri Jan 16 01:27:36 WIT 2015 oam
+Fri Jan 16 01:27:36 WIT 2015 ccs1a
+Fri Jan 16 01:31:19 WIT 2015 ccs1b
+Jumat, 16 Januari 2015 01:27:37 WIT ccs1b pkb
+Fri Jan 16 01:27:38 WIT 2015 ccs1a pkb
+Fri Jan 16 01:27:38 WIT 2015 ccs1a sby
+Fri Jan 16 01:27:39 WIT 2015 ccs1b sby
+[JKT:trbt@FrontUI07:/TRBT]
+
+
+
+
+
+
+
+
+
+
+rename file in solaris:
+for i in *cdr;
+do
+mv $i pkb_$i;
+done
+
+
+rsh in centos 6.5:
+------------------
+yum install rsh-server rsh xinetd
+
+vi /etc/xinetd.d/rsh
+vi /etc/xinetd.d/rlogin
+set disable=yes to disable=no
+
+/etc/init.d/xinetd restart
+echo "+ +" >  ~/.rhosts
+chmod go-rwx ~/.rhosts
+
+oracle client in centos:
+------------------------
+[root@FrontUI06 hary]# rpm -Uvh ksh-20120801-21.el6.1.x86_64.rpm 
+
+[root@FrontUI06 hary]# 
+oracle-instantclient12.1-basic-12.1.0.2.0-1.x86_64.rpm
+oracle-instantclient12.1-devel-12.1.0.2.0-1.x86_64.rpm
+oracle-instantclient12.1-sqlplus-12.1.0.2.0-1.x86_64.rpm
+
+[root@FrontUI06 hary]# rpm -Uvh oracle-instantclient12.1-*
+Preparing...                ########################################### [100%]
+   1:oracle-instantclient12.########################################### [ 33%]
+   2:oracle-instantclient12.########################################### [ 67%]
+   3:oracle-instantclient12.########################################### [100%]
+[root@FrontUI06 hary]# su - trbt
+[JKT:trbt@FrontUI06 TRBT] scp .bashrc
+
+[JKT:trbt@FrontUI05:/usr/lib/oracle/12.1/client64]scp -r network/ frontui06:/usr/lib/oracle/12.1/client64
+
+
+
+
+remove old kernel:
+# package-cleanup --oldkernels --count=2
+# vi /etc/yum.conf
+installonly_limit=2
+
+
+record your action on terminal
+------------------------------
+script to record your terminal session:
+$ script -t scriptku.time scriptku.out
+
+to play(reply) it:
+$ scriptreplay -t scriptku.time scriptku.out 
+
+
+cek if server is up in whole network
+$ nmap -sn 202.78.200.0/24
+
+
+to check what have been you updated:
+# yum history list
+# yum history info ID
+# yum history info 299
+
+
+
+awk sum:
+cat a.txt | awk '{h+=$0} END {print h}'
+
+
+enable printing:
+# systemctl status cups.service
+# systemctl start cups.service
+
+
+install vnc server at CENTOS 7
+yum install tigervnc-server xorg-x11-fonts-Type1
+[root@server ~]# cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@:5.service
+[root@server ~]# vi /etc/systemd/system/vncserver@:5.service
+[Unit]
+Description=Remote desktop service (VNC)
+After=syslog.target network.target[Service]
+Type=forking
+# Clean any existing files in /tmp/.X11-unix environment
+ExecStartPre=/bin/sh -c ‘/usr/bin/vncserver -kill %i > /dev/null 2>&1 || :’
+ExecStart=/sbin/runuser -l <USER> -c “/usr/bin/vncserver %i”
+PIDFile=/home/<USER>/.vnc/%H%i.pid
+ExecStop=/bin/sh -c ‘/usr/bin/vncserver -kill %i > /dev/null 2>&1 || :'[Install]
+WantedBy=multi-user.target
+
+Replace <USER> with your real user, in my case i replaced with user called hary dan geometry:
+
+ ExecStart=/sbin/runuser -l hary -c “/usr/bin/vncserver %i -geometry 1280×1024″
+
+[root@server ~]# firewall-cmd --permanent --zone=public --add-port=5905/tcp
+[root@server ~]# firewall-cmd --reload
+
+[raj@server ~]$ vncserver
+
+systemctl daemon-reload
+
+systemctl start vncserver@:5.service
+
+systemctl enable vncserver@:5.service
+
+
+login vnc dengan cara
+192.168.0.20:5
+
+
+tar.gz extract ke custom directory:
+tar xf archive.tar -C /target/directory --strip-components=1
+
+
+
+
+
+convert video to mp3 bisa pake vlc
+klik media -> convert/save -> pilih file, trus klik convert/save, trus pilih format output dan output directory
+
+
+
+
+aplikasi untuk latihan dan belajar typing di linux:
+gtypist
+typespeed
+
+
+remove unecessary program, eg:
+# yum remove fedora-release-notes-21.08-1.fc21.noarch
+# yum remove system-config-services-0.111.1-2.fc21.noarch
+
+
+connect to serial
+==================
+# dmesg | grep -i tty
+
+$ dmesg | grep -i tty
+[    0.000000] console [tty0] enabled
+[   57.933467] Bluetooth: RFCOMM TTY layer initialized
+[  414.987388] usb 3-1: pl2303 converter now attached to ttyUSB0
+
+
+# screen /dev/tty_serial beud_rate
+
+$ screen /dev/ttyUSB0 115200
+
