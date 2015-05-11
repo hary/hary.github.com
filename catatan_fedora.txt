@@ -254,8 +254,10 @@ to play(reply) it:
 $ scriptreplay -t scriptku.time scriptku.out 
 
 
-cek if server is up in whole network
+
+cek if server is up in whole network:
 $ nmap -sn 202.78.200.0/24
+
 
 
 to check what have been you updated:
@@ -266,15 +268,17 @@ to check what have been you updated:
 
 
 awk sum:
+==========
 cat a.txt | awk '{h+=$0} END {print h}'
 
 
-enable printing:
+enable printing fedora:
 # systemctl status cups.service
 # systemctl start cups.service
 
 
-install vnc server at CENTOS 7
+install vnc server at CENTOS 7 :
+================================
 yum install tigervnc-server xorg-x11-fonts-Type1
 [root@server ~]# cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@:5.service
 [root@server ~]# vi /etc/systemd/system/vncserver@:5.service
@@ -305,8 +309,10 @@ systemctl start vncserver@:5.service
 systemctl enable vncserver@:5.service
 
 
-login vnc dengan cara
+login vnc dengan cara buka vnc address:
 192.168.0.20:5
+
+
 
 
 tar.gz extract ke custom directory:
@@ -316,8 +322,9 @@ tar xf archive.tar -C /target/directory --strip-components=1
 
 
 
-convert video to mp3 bisa pake vlc
+convert video to mp3 bisa pake vlc:
 klik media -> convert/save -> pilih file, trus klik convert/save, trus pilih format output dan output directory
+
 
 
 
@@ -327,22 +334,35 @@ gtypist
 typespeed
 
 
+
 remove unecessary program, eg:
 # yum remove fedora-release-notes-21.08-1.fc21.noarch
 # yum remove system-config-services-0.111.1-2.fc21.noarch
 
 
-connect to serial
-==================
-# dmesg | grep -i tty
 
+
+connect to serial from linux
+============================
+1. plug in usb cable and check from dmesg :
+# dmesg | grep -i tty
+2. login to serial using screen :
+# screen /dev/tty_serial beud_rate
+
+example :
 $ dmesg | grep -i tty
 [    0.000000] console [tty0] enabled
 [   57.933467] Bluetooth: RFCOMM TTY layer initialized
 [  414.987388] usb 3-1: pl2303 converter now attached to ttyUSB0
 
-
-# screen /dev/tty_serial beud_rate
-
 $ screen /dev/ttyUSB0 115200
+
+
+save output of screen into file
+$ screen /dev/ttyUSB0 115200 -L
+
+or
+when you are in screen type : ctrl-a + H
+change directory : ctrl-a + : tyen type chdir /home/hary/some/folder
+
 
