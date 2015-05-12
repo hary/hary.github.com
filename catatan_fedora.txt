@@ -358,7 +358,7 @@ $ dmesg | grep -i tty
 $ screen /dev/ttyUSB0 115200
 
 
-save output of screen into file
+to save output of screen into file
 $ screen /dev/ttyUSB0 115200 -L
 
 or
