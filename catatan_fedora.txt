@@ -33,7 +33,7 @@ yum -y groups install "GNOME Desktop"
 
 
 
-routeadd telkomsel dzone + calbe:
+routeadd telk di zone + kabel:
 netstat -nr
 Kernel IP routing table
 Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface
@@ -90,12 +90,12 @@ edit /etc/sysconfig/crond :
 CRONDARGS='-m off'
 
 
-$ vncviewer -via lbapop@192.168.0.174 localhost:1
+$ vncviewer -via some_user@192.168.0.174 localhost:1
 
 
 
 
-[JKT:trbt@FrontUI05:/TRBT]sqlplus rbtrpt/rbtrpt@rpt1a/RBTRPT
+[JKT:some_user@FrontUI05:/some_user]sqlplus rbtrpt/rbtrpt@rpt1a/RBTRPT
 
 
 mv /etc/localtime /etc/localtime.ori
@@ -112,7 +112,7 @@ Thu Jan  8 16:56:43 WIB 2015
 
 
 hchmcp
-[JKT:trbt@TB171:/TRBT]useradd hrbt
+[JKT:some_user@TB171:/some_user]useradd hrbt
 [JKT:root@TB171:/root]passwd hrbt
 [JKT:root@TB171:/root]usermod -u 111 prbt
 
@@ -169,14 +169,14 @@ to sync:
 [root@FrontUI07 ~]# ntpdate -q oam
 
 to check
-[JKT:trbt@FrontUI07:/TRBT]ssh frontui06 date; ssh frontui07 date
+[JKT:some_user@FrontUI07:/some_user]ssh frontui06 date; ssh frontui07 date
 
 ntpstat
 ntpq -p
 ntpq -pn
 http://www.cyberciti.biz/faq/linux-unix-bsd-is-ntp-client-working/
 
-[JKT:trbt@FrontUI07:/TRBT]ssh frontui05 date; ssh frontui06 date; date; ssh oam date; ssh ccs1a date; ssh ccs1b date; ssh ccs1b_pkb date; ssh ccs1a_pkb date; ssh ccs1a_sby date; ssh ccs1b_sby date
+[JKT:some_user@FrontUI07:/some_user]ssh frontui05 date; ssh frontui06 date; date; ssh oam date; ssh ccs1a date; ssh ccs1b date; ssh ccs1b_pkb date; ssh ccs1a_pkb date; ssh ccs1a_sby date; ssh ccs1b_sby date
 Fri Jan 16 01:27:35 WIB 2015 front5
 Fri Jan 16 01:27:36 WIB 2015front6
 Fri Jan 16 01:27:36 WIB 2015 front7
@@ -187,7 +187,7 @@ Jumat, 16 Januari 2015 01:27:37 WIT ccs1b pkb
 Fri Jan 16 01:27:38 WIT 2015 ccs1a pkb
 Fri Jan 16 01:27:38 WIT 2015 ccs1a sby
 Fri Jan 16 01:27:39 WIT 2015 ccs1b sby
-[JKT:trbt@FrontUI07:/TRBT]
+[JKT:some_user@FrontUI07:/some_user]
 
 
 
@@ -219,22 +219,22 @@ chmod go-rwx ~/.rhosts
 
 oracle client in centos:
 ------------------------
-[root@FrontUI06 hary]# rpm -Uvh ksh-20120801-21.el6.1.x86_64.rpm 
+[root@FrontUI06 some_user]# rpm -Uvh ksh-20120801-21.el6.1.x86_64.rpm 
 
-[root@FrontUI06 hary]# 
+[root@FrontUI06 some_user]# 
 oracle-instantclient12.1-basic-12.1.0.2.0-1.x86_64.rpm
 oracle-instantclient12.1-devel-12.1.0.2.0-1.x86_64.rpm
 oracle-instantclient12.1-sqlplus-12.1.0.2.0-1.x86_64.rpm
 
-[root@FrontUI06 hary]# rpm -Uvh oracle-instantclient12.1-*
+[root@FrontUI06 some_user]# rpm -Uvh oracle-instantclient12.1-*
 Preparing...                ########################################### [100%]
    1:oracle-instantclient12.########################################### [ 33%]
    2:oracle-instantclient12.########################################### [ 67%]
    3:oracle-instantclient12.########################################### [100%]
-[root@FrontUI06 hary]# su - trbt
-[JKT:trbt@FrontUI06 TRBT] scp .bashrc
+[root@FrontUI06 some_user]# su - some_user
+[JKT:some_user@FrontUI06 some_user] scp .bashrc
 
-[JKT:trbt@FrontUI05:/usr/lib/oracle/12.1/client64]scp -r network/ frontui06:/usr/lib/oracle/12.1/client64
+[JKT:some_user@FrontUI05:/usr/lib/oracle/12.1/client64]scp -r network/ frontui06:/usr/lib/oracle/12.1/client64
 
 
 
@@ -287,15 +287,15 @@ Description=Remote desktop service (VNC)
 After=syslog.target network.target[Service]
 Type=forking
 # Clean any existing files in /tmp/.X11-unix environment
-ExecStartPre=/bin/sh -c ‘/usr/bin/vncserver -kill %i > /dev/null 2>&1 || :’
-ExecStart=/sbin/runuser -l <USER> -c “/usr/bin/vncserver %i”
+ExecStartPre=/bin/sh -c /usr/bin/vncserver -kill %i > /dev/null 2>&1 || :
+ExecStart=/sbin/runuser -l <USER> -c /usr/bin/vncserver %i
 PIDFile=/home/<USER>/.vnc/%H%i.pid
-ExecStop=/bin/sh -c ‘/usr/bin/vncserver -kill %i > /dev/null 2>&1 || :'[Install]
+ExecStop=/bin/sh -c /usr/bin/vncserver -kill %i > /dev/null 2>&1 || :'[Install]
 WantedBy=multi-user.target
 
-Replace <USER> with your real user, in my case i replaced with user called hary dan geometry:
+Replace <USER> with your real user, in my case i replaced with user called some_user dan geometry:
 
- ExecStart=/sbin/runuser -l hary -c “/usr/bin/vncserver %i -geometry 1280×1024″
+ ExecStart=/sbin/runuser -l some_user -c /usr/bin/vncserver %i -geometry 1280 1024
 
 [root@server ~]# firewall-cmd --permanent --zone=public --add-port=5905/tcp
 [root@server ~]# firewall-cmd --reload
@@ -363,6 +363,3656 @@ $ screen /dev/ttyUSB0 115200 -L
 
 or
 when you are in screen type : ctrl-a + H
-change directory : ctrl-a + : tyen type chdir /home/hary/some/folder
+change directory : ctrl-a + : tyen type chdir /home/some_user/some/folder
 
 
+after install fed 19,
+enable mouse tap
+
+install mate:
+yum install @mate
+
+edit .vimrc
+vi ~/.vimrc
+
+make vim as default editor
+cd /usr/share/application
+vi vim.desktop
+[Desktop Entry]
+Version=1.0
+Type=Application
+Exec=vim -o %F
+Terminal=true
+Name=Vim
+Comment=Open with Vim
+Icon=utilities-terminal
+Categories=Development;
+
+then edit default.list or mimeapps.list
+text/plain=vim.desktop;
+
+remove unnecesary program:
+gedit
+geany
+orca
+pidgin
+nano
+
+install:
+google.com/chrome
+rpm -ivh google-chrome
+adblock plus
+
+terminal -> prefernces -> do not show menubar
+
+install sqldeveloper
+ambil rpm di oracle.com/xx/x/x
+rpm -ivh sqldeveloper
+vi /opt/sqldeveloper/sqldeveloper/bin/sqldeveloper.conf
+append :
+SetSkipJ2SDKCheck true
+
+
+install conky:
+yum install conky
+
+to disable backlight keyboard :
+echo 0 > /sys/class/leds/asus::kbd_backlight/brightness
+need to add this into rc.local
+
+edit /etc/hosts:
+192.168.0.1 gw.some_user.web.id	gw
+192.168.0.2 router.some_user.web.id	router
+
+
+install fedora from netinst
+download netinstaller iso
+
+make usb bootable, download from:
+http://sourceforge.net/projects/unetbootin/?source=dlp
+
+
+
+we will only install mate
+
+install mate:
+yum install @MATE mate-applets
+yum install @mate-desktop
+
+vi /etc/sysconfig/desktop
+PREFERRED=/usr/bin/mate-session
+
+
+yum groupinstall gnome-desktop
+yum groupremove mate-desktop
+
+if you use netinstall, you can choose to install mate by default
+
+cd /home/some_user/Downloads
+ls
+Bluecurve-Theme.tar.gz
+flash-plugin-11.2.202.291-release.x86_64.rpm
+google-chrome-stable_current_x86_64.rpm
+jdk-7u25-linux-x64.rpm
+mysql-connector-java-5.1.25.tar.gz
+sqldeveloper-3.2.20.09.87-1.noarch.rpm
+start_here_redhat.png
+
+
+to change start menu icon, go to your theme:
+/usr/share/icons/Bluecurve/and edit file
+apps/start-here.png
+
+catatan git
+
+git config --global user.name "maybe_some_cool_name"
+git config --global user.email "maybe_some_cool_name.net@gmail.com"
+	
+git config --global github.user maybe_some_cool_name
+git config --global github.token aaa4a454f454aaaaaaalefbf25
+	
+	
+create repository : maybe_some_cool_name.github.com
+
+ssh to a server.	
+mkdir ~/maybe_some_cool_name.github.com
+cd maybe_some_cool_name.github.com
+git init
+echo maybe_some_cool_name > README
+echo welcome to maybe_some_cool_name > index.html
+echo "Not Found!" > 404.html
+
+git add .
+git commit -m 'commit gan'
+git remote add origin git@github.com:maybe_some_cool_name/maybe_some_cool_name.github.com.git
+git push origin master
+
+
+to update a file:
+first update or edit file, eg index.html, then
+git add index.html
+git commit -m "updating index.html"
+
+git status
+git log -l
+
+
+
+adding files:
+=============
+cp ~/favicon.ico .
+git add favicon.ico
+git commit -m "adding favicon.ico"
+git push origin master
+
+
+git status
+
+git log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short
+
+touch ~/.gitconfig
+[alias]
+githistory = git log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short
+
+
+
+git log --all
+
+
+
+download a git repo:
+cd
+git clone https://github.com/some_user/some_user.github.com.gitmask url
+domain will be masked you only see addreess, and content is diferrent
+web forwarding
+
+
+apakah anda mau pindah partisi karena merasa partisi ke 5 (/dev/sdb5) terlalu jauh dari /dev/sda dan ingin mengurutkan secara teratur partisi anda
+atau partisi /dev/sdb5 telah penuh, dan telah di lakukan mount sana mount sini.
+
+nah, anda bisa melakukan pindah partisi.
+
+I also point http://gapebook.com to mask http://bolesbooks.com/thomson so you can visit
+the homepage for this book using that URL, too! -> maksudnya apa nih ? CNAME gituh?
+
+
+bisakah user-user tertentu saja yang di aliaskan.
+misalnya selain some_user tidak boleh alias? bisa kah?
+
+lihat opsi di setting -> account di maybe_some_cool_name.net (utk alias)
+gunakan :
+when i receive a message sent to one of my address
+replay from the same address the message was sent to
+
+setting web clips (iklan yang ada saat berada di halaman depan mail itu lho:
+ke setting -> web clips
+masukkan rss yang diingnkan biar ditampilkan di depan -> kompas cocok nih(cepat soale)
+
+====================
+ganti background dengan warna,tiddak gambar
+google analitik for custom domin blogger.
+cek validasi di http://validator.w3.org/
+add google search to blog :
+
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom"
+target="_top"><table border="0" bgcolor="#ffffff">
+<tr><td nowrap="nowrap" valign="top" align="left" height="32">
+<a href="http://www.google.com/">
+<img src="http://www.google.com/logos/Logo_25wht.gif"
+border="0"
+alt="Google" align="middle"></img></a><br/>
+<input type="hidden" name="domains"
+value="fruitforall.blogspot.com"></input>
+<label for="sbi" style="display: none" Enter your search
+terms></label>
+<input type="text" name="q" size="31" maxlength="255"
+value="" id="sbi"></input>
+</td></tr>
+<tr><td nowrap="nowrap"><table><tr><td>
+<input type="radio" name="sitesearch" value="" checked
+id="ss0"></input>
+<label for="ss0" title="Search the Web"><font size="-1"
+color="#000000">Web</font></label></td><td>
+<input type="radio" name="sitesearch"
+value="fruitforall.blogspot.com" id="ss1"></input>
+<label for="ss1" title="Search fruitforall.blogspot.com"><font
+size="-1" color="#000000">fruitforall.blogspot.com
+</font></label></td></tr></table>
+<label for="sbb" style="display: none">Submit search
+form</label>
+<input type="submit" name="sa" value="Search" id="sbb"></input>
+<input type="hidden" name="client"
+value="pub-7228537097350713"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="channel" value="4474446872"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+Chapter 7
+[ 211 ]
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="safe" value="active"></input>
+<input type="hidden" name="flav" value="0000"></input>
+<input type="hidden" name="sig" value="BSNIkd2tTVMlE0xC"
+></input>
+<input type="hidden" name="cof"
+value="GALT:#006600;GL:1;DIV:#d1edbb;VLC:663399;AH:center;BGC:
+FFFFFF;LBGC:ffffff;ALC:006600;LC:006600;T:000000;GFNT:0000FF;
+GIMP:0000FF;LH:50;LW:95;L:http://www.leesjordan.net/social/ffa_
+logoth109.jpg;S:http://;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form><!-- SiteSearch Google -->install openssh in solaris 10
+
+1. download openssh from internet, for example from
+ftp://ftp.demos.su/pub/sunfreeware/intel/10/openssh-5.2p1-sol10-x86-local.gz
+
+2. install openssh
+gunzip -d openssh-5.2p1-sol10-x86-local.gz
+pkgadd -d openssh-5.2p1-sol10-x86-local
+
+3. disable current sshd :
+svcadm disable ssh
+
+4. edit the configuration file in /usr/local/etc/sshd_config
+
+
+5. create key :
+/usr/local/bin/ssh-keygen -t rsa1 -f /usr/local/etc/ssh_host_key
+/usr/local/bin/ssh-keygen -t rsa -f /usr/local/etc/ssh_host_rsa_key
+/usr/local/bin/ssh-keygen -t dsa -f /usr/local/etc/ssh_host_dsa_key
+
+6. create user ssd:
+mkdir /var/empty
+chmod 755 /var/empty
+chown root:sys /var/empty
+
+vi /etc/passwd
+append:
+sshd:x:202:65534::/var/empty:
+
+7. create startup script
+vi /etc/init.d/sshd
+
+start()
+{
+ echo "Starting $Script:"
+   $Sshd
+   ExitCode=$?
+} # end function start
+
+stop()
+{
+   echo "Stopping $Script:"
+   /bin/pkill -f ${Sshd}
+   ExitCode=$?
+} # end function stop
+
+case "$1" in
+   start)
+        start
+        ;;
+   stop)
+        stop
+        ;;
+   restart)
+        stop
+        start
+        ;;
+   *)
+        echo "Usage: $Script {start|stop|restart}"
+        ExitCode=1
+esac
+
+exit $ExitCode
+
+# End sshd
+
+
+make link:
+ln -s /etc/init.d/sshd /etc/rc0.d/K22sshd
+ln -s /etc/init.d/sshd /etc/rc1.d/K22sshd
+ln -s /etc/init.d/sshd /etc/rc2.d/K22sshd
+ln -s /etc/init.d/sshd /etc/rc2.d/S22sshd
+ln -s /etc/init.d/sshd /etc/rcS.d/K22sshd
+
+8. start openssh :
+/etc/init.d/sshd start
+
+install latex
+-------------
+to install latex (with latex-beamer for presentation, with distinct blue and white theme presentation template)
+
+apt-get install texlive-latex-base
+(yum install texlive-latex-base)
+
+apt-get install latex-beamer
+(yum install latex-beamer)
+
+create a .tex file, eg:test.tex
+(create and edit it based on latext structure)
+
+after finish, convert it to ps then to pdf :
+latex test.tex
+latex test.tex
+dvips test.dvi
+ps2pdf test.ps
+
+to install latex2pdf :
+apt-get install liblatex-driver-perl
+using case and input from user:
+-------------------------------
+case "$1" in
+	'start')
+		echo "starting up gan.."
+		echo "hostname :" `hostname`
+		if [-f ]; then
+			#eksekusi
+			/usr/bin/bash
+		fi
+		echo ""
+		;;
+	'stop')
+		echo "hehe"
+esac
+
+
+#banner -> will show banner of text,eg, solaris only
+#banner a
+
+   ##
+  #  #
+ #    #
+ ######
+ #    #
+ #    #
+
+===================
+
+if /usr/bin/svcs svc:/system/hpasmd:default | grep online > /dev/null
+###----> it means if its true then execute below
+then
+	if [ -f /opt/HPQhealth/sbin/hpasmcli ] 
+         ### -> return true if hpasmcli is a file
+	then
+		/opt/HPQhealth/sbin/hpasmcli -s "show POWERSUPPLY"
+	fi
+else
+	/usr/bin/svcs svc:/system/hpasmd:default | grep maintenance	
+fi
+=======================
+
+#tee? -> read from standard input and write to standard output&files
+
+
+if [ -f /usr/sbin/dladm ]; -> -f means : return true if it's a file
+then 
+
+
+
+iwlist wlan0 scan
+iwconfig wlan0 essid <mynetwork>
+dhclient wlan0
+
+
+nmap -n -p 22,23 10.251.164.1-47, 10.65.159.2-4, 10.35.195.50-52
+
+nmap -n -p 22,23 10.251.163.1-9,11-12,14-17,66-70,72-97,199 10.65.116.161-162, 10.35.192.50-51
+
+
+
+#!/usr/bin/bash
+
+#using for in looping 
+for ((i=$1;i<=$2;i++))
+do
+if ping 10.251.164.${i} | grep TTL= then
+	rsh 10.251.164.${i} 'hostname; ifconfig -a | grep 164.'
+	
+fi
+done
+
+
+kill -x -u some_user ssh =>> to kill ssh of user some_user, all of them
+
+
+======
+what is 2>&1???
+find . -type f -exec mv {} /test \; >> abc.txt 2>&1 ???
+this is I/O redirection.
+Each open file gets assigned a file descriptor. The file descriptors for stdin, stdout, and stderr are 0, 1, and 2, respectively. 
+
+ 2>&1
+      # Redirects stderr to stdout.
+      # Error messages get sent to same place as standard output.
+        >>filename 2>&1
+            bad_command >>filename 2>&1
+            # Appends both stdout and stderr to the file "filename" ...
+        2>&1 | [command(s)]
+            bad_command 2>&1 | awk '{print $5}'   # found
+            # Sends stderr through a pipe.
+            # |& was added to Bash 4 as an abbreviation for 2>&.
+			
+oh, dalam script bash,bisa ambil dari file external toh
+for LINE in `cat ./conf/pm_5m.lst`
+
+
+
+what is these script means?
+
+  if [ ! -z "$CATALINA_PID" ]; then
+    if [ -f "$CATALINA_PID" ]; then
+      if [ -s "$CATALINA_PID" ]; then
+        echo "Existing PID file found during start."
+        if [ -r "$CATALINA_PID" ]; then
+
+
+in bash:
+-z	String is zero length	if [ -z "$foo" ]
+-n	String is not zero length	if [ -n "$foo" ]
+-nt	Newer Than	if [ "$file1" -nt "$file2" ]
+-d	Is a Directory	if [ -d /bin ]
+-f	Is a File	if [ -f /bin/ls ]
+-r	Is a readable file	if [ -r /bin/ls ]
+-w	Is a writable file	if [ -w /bin/ls ]
+-x	Is an executable file	if [ -x /bin/ls ]
+
+
+using while do:
+---------------
+server=1
+count=0
+total=0
+while [[ $server -le 7 ]]
+do
+        echo "InfraUI0$server BUFFER CDR count : $count"
+        total=$((total+count))
+        server=$((server+1))
+
+done
+
+my linux catatan 
+================
+
+install asus backlight control :
+--------------------------------
+download asus-kbd-backlight at https://launchpad.net/asus-keyboard-backlight
+#tar xzvf asus-kbd-backlight_0.1_src.tar.gz
+#cd asus-kbd-backlight-0.1
+#./install.sh --install
+
+to set backlight at boot, issue command:
+chkconfig asus-kbd-backlight on
+(not working on fedora17)
+
+install chrome-stable :
+-----------------------
+#vi /etc/yum.repos.d/google.repo
+[google-chrome]
+name=google-chrome - 64-bit
+baseurl=http://dl.google.com/linux/chrome/rpm/stable/x86_64
+enabled=1
+gpgcheck=1
+gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
+
+to install, use yum
+#yum install google-chrome-stable
+
+to set google chrome deault search to google.com/ncr:
+close chrome then edit file:
+vi ~/.config/google-chrome/Local\ State
+change google.co.id into google.com
+
+
+check battery status :
+cat /proc/acpi/battery/BAT0/info
+
+install flash-player:
+---------------------
+download flashplayer from get.adobe.com/flashplayer
+download the 64bit rpm and install it using:
+rpm -ivh <flash_player_name>.rpm
+
+disable 631/tcp open  ipp
+#/etc/init.d/cups stop
+# chkconfig cups off
+
+remove 3 icons (computer, home, trash) in desktop :
+---------------------------------------------------
+Open terminal, type:
+#gconf-editor
+if it's not installed yet, use 
+#yum install gconf-editor
+
+then 'Configuration Editor' opens. 
+go to: apps -> nautilus -> desktop
+Untick all the icons and done.
+
+
+package needed to be installed:
+-------------------------------
+google-chrome
+nmap
+rpmforge -> for yumming
+gconf-editor ->after delete desktop files, then remove again
+fuse-ntfs-3g -> for accesing ntfs
+powertop -> to check and (practically, intentationally) save power -> no need
+smplayer
+libreoffice3.4
+sun java jdk 1.6
+flash-player
+netbean
+firefox -> manually download and put at /opt
+sqldeveloper -> download rpm or manually put at /opt
+
+
+package needed to be deleted:
+-------------------------------
+gedit -> I hate this thing
+nano -> I hate this too
+openjdk -> replace with sun java jdk
+abrt (bug tracking)
+orca (magnifier)
+gucharmap(gnu char map) -> also remove gnome-applets
+remove m17n -> language support
+remove all language font support
+remove old kernel (rpm -e kernel<version_old>)
+
+(the point is to make it as light as possible)
+
+to remove old kernel or anything from package you can use
+rpm -e kernel.old.x.x
+yum remove kernel.old.x.x
+
+to automatically remove old kernel:edit /etc/yum.conf
+set:
+installonly_limit=2
+to keep the last 2 kernel version for each update.
+
+services that running:
+#chkconfig --list | grep :on
+NetworkManager 	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+acpid          	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+asus-kbd-backlight	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+atd            	0:off	1:off	2:off	3:on	4:on	5:on	6:off
+auditd         	0:off	1:off	2:on	3:on	4:on	5:off	6:off
+autofs         	0:off	1:off	2:off	3:on	4:on	5:on	6:off
+avahi-daemon   	0:off	1:off	2:off	3:on	4:on	5:on	6:off
+cpuspeed       	0:off	1:on	2:on	3:on	4:on	5:on	6:off
+crond          	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+haldaemon      	0:off	1:off	2:off	3:on	4:on	5:on	6:off
+irqbalance     	0:off	1:off	2:off	3:on	4:on	5:on	6:off
+lvm2-monitor   	0:off	1:on	2:off	3:off	4:off	5:off	6:off
+messagebus     	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+microcode_ctl  	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+network        	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+portreserve    	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+rsyslog        	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+sysstat        	0:off	1:on	2:on	3:on	4:on	5:on	6:off
+udev-post      	0:off	1:on	2:on	3:on	4:on	5:on	6:off
+
+
+install ntfs support on centos:
+---------------------------------
+first install rpm-forge repo.
+import key:
+#rpm --import http://apt.sw.be/RPM-GPG-KEY.dag.txt
+
+download the rpm installer at
+http://packages.sw.be/rpmforge-release/rpmforge-release-0.5.2-2.el6.rf.x86_64.rpm 
+then, verify the package rpm : 
+#rpm -K rpmforge-release-0.5.2-2.el6.rf.*.rpm
+
+if ok then, then install it
+#rpm -i rpmforge-release-0.5.2-2.el6.rf.*.rpm
+
+now you can install ntfs suport using yum
+#yum install fuse fuse-ntfs-3g 
+
+if you don't use rpm-forge anymores, just remove them form /etc/yum.repos.d
+
+Mounting an NTFS filesystem
+---------------------------
+Suppose your ntfs filesystem is /dev/sda3 and you are going to mount it on
+/media/sda3, do the following:
+create the mount point /media/sda3. 
+mkdir -p /media/sda3
+
+then edit /etc/fstab. To mount read-only:
+/dev/sda1       /media/sda3   ntfs-3g  ro,umask=0222,defaults 0 0 
+
+To mount read-write:
+/dev/sda1       /media/sda3   ntfs-3g  rw,umask=0000,defaults 0 0 
+
+You can now mount it by running:
+mount /media/sda3
+
+or mounting from command line:
+mount.ntfs /dev/sda3 /media/sda3 -o rw,nosuid,nodev,uhelper=udisks,uid=500,gid=500,dmask=0077
+done
+
+disable splashscreen/splashimage on boot/shutdown:
+------------------------------------------
+vi /etc/grub.conf
+remove 2 words at the last of a line that's are: 'rhgb' and 'quiet'
+done
+
+
+Install Packages Via yum Command Using DVD / CD as Repo :
+---------------------------------------------------------
+# vi /etc/yum.repos.d/CentOS-Media.repo
+enabled=1
+
+# yum --enablerepo=c5-media install pacakge-name
+# yum --disablerepo=\* --enablerepo=c5-media groupinstall 'Virtualization'
+
+disable unused service/package at boot on centos:
+http://www.imminentweb.com/technologies/centos-disable-unneeded-services-boot-time
+
+
+install firefox 10 at centos 64bit:
+---------------------------------
+download latest firefox at:
+https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/latest/
+
+for 64 :
+https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/latest/linux-x86_64/en-US/firefox-10.0.tar.bz2
+
+and put it in /opt
+
+then modify /usr/bin/firefox :
+rename all firefox-3.6 to firefox
+and you good to go.
+
+about the flash player plugin, it's in /usr/lib64/mozilla, but move the
+mozilla folder to /opt
+
+
+to read pdf -> google-chrome
+to play mp3 -> smplayer
+
+
+cek /etc/cron*
+apus google-chrome updater and all update2 thing..
+
+cek /etc/yum.repo.d/*
+pindahin aja repo yg ndak dipakai ke tempat lain, eg: home directory
+
+powertop
+---------
+how to improve battery usage in linux? set cpu clock/speed? man cpuspeed -> control power consumtion
+yum install powertop
+
+power top helps you find programs that are consuming extra power when your computer is idle. 
+You can see the power savings immediately within the tool
+
+
+~/.bashrc
+----------
+alias less='less -iM'
+alias lsdir='ls -d */'
+alias vi='vim -o'
+set -o notify
+set -o noclobber #do not overwrite exisiting file
+unset HISTFILE
+PS1="\u@\h:\W\$"
+exportPS1
+
+~/.vimrc
+set nocompatible
+syntax on
+set incsearch
+set ignorecase
+set autochdir
+
+
+make autocomplete a command from history (just like in BSD):
+-----------------------------------------------------------
+to search a command (that has been executed fews times ago) in history in comand prompt, 
+type ctrl-R to search for previous command in history.
+(reverse-i-search)`': 
+
+but here's the way to autocomplete/search previous entered command:
+edit /etc/inputrc
+uncommand lines that contain:
+"\e[5~": history-search-backward
+"\e[6~": history-search-forward
+and now you can autocomplete your command using [PAGE-UP] and [PAGE-DOWN] button (not really like BSD, but it's ok though).
+
+
+install jdk, netbean, sqldeveloper
+----------------------------------
+install netbean 7.1
+download at netbean.org/download
+chmod +x netbeans-7.1-ml-linux.sh 
+./netbeans-7.1-ml-linux.sh 
+
+to install java sun jdk instead of openjdk on centos:
+download sun java jdk at http://java.sun.com/javase/downloads/index.jsp
+chmod +x jdk-6u30-linux-x64-rpm.bin
+./jdk-6u30-linux-x64-rpm.bin
+
+check / install jdk in alternatives configuration:
+to see current alternatives:
+alternatives --config java
+
+to add new alternatives:
+alternatives --install /usr/bin/java java /usr/java/jdk1.6.0_30/bin/java 2
+
+then
+alternatives --config java
+press the number 2
+this will update the alternatives and which java version to be used
+then remove default openjdk:
+rpm -e java-1.6.0-openjdk-1.6.0.0-1.36.b17.el6_0.x86_64
+
+install and execute sqldeveloper without need to check the location of JDK 
+just add 
+SetSkipJ2SDKCheck true
+to
+/opt/sqldeveloper/sqldeveloper/bin/sqldeveloper.conf
+
+
+add plugins to browser
+----------------------
+to add flashplayer plugin to chrome, just create folder plugins
+mkdir -p /opt/google/chrome/plugins/
+cd /opt/google/chrome/plugins/
+and create symbolic link to flashplayer 
+ln -s /usr/lib64/flash-plugin/libflashplayer.so libflashplayer.so
+
+to add flashplayer plugin into firefox:
+the default location is in /usr/lib64/mozilla/plugins, 
+but we can move it to /opt/mozilla/plugins, just for the sake of consistency (/opt).
+and then linked it to
+ln -s /usr/lib64/flash-plugin/libflashplayer.so libflashplayer.so
+that's easy.
+
+the same procedure apply to java plugin
+it's in /usr/java/jdk1.6.0_30/jre/lib/amd64/libnpjp2.so
+for chrome:
+cd /opt/google/chrome/plugins/
+ln -s /usr/java/jdk1.6.0_30/jre/lib/amd64/libnpjp2.so libnpjp2.so
+
+for firefox:
+cd /opt/mozilla/plugins
+ln -s /usr/java/jdk1.6.0_30/jre/lib/amd64/libnpjp2.so libnpjp2.so
+
+
+make proccess background
+------------------------
+to make/sent already executed command/program to background :
+just press CTRL-Z to suspend the job, 
+then type 'bg' to send it to the background.
+to see it again type 'fg'.
+
+
+CUSTOMIZE GNOME START MENU:
+------------------------------------------------
+or make default program in nautilus gnome.
+it's in application folder with .desktop extention.
+the location can be in 
+~/.local/share/applications
+/usr/share/applications
+/usr/local/share/applications
+
+and to customize the location in gnome start menu,you just need to edit line
+that contain 'Categories' to move it around.
+eg:
+Categories=Development; -> programming
+Categories=Network;WebBrowser; -> Internet
+etc
+
+add 'right click -> open with' in gnome nautilus (context menu in windows)
+------------------------------------------------
+the configuration that dealing with 'open with' is in directory ~/.local/share/applications. 
+you might want to create this permanently in /usr/local/share/applications in case you $HOME is crashed
+(update:many .desktop apps are located in /usr/share/application and /usr/local/share/applications)
+
+and every file with .desktop extention can be executed as program in start
+menu and open menu.
+to add a new content menu we want, eg, we want to open file with vim, 
+create file vim.desktop in /usr/share/applications, with content:
+eg:
+[Desktop Entry]
+Version=1.0
+Type=Application
+Exec=vim -o %F
+Terminal=true
+Name=Vim
+Comment=Open with Vim
+Icon=utilities-terminal
+Categories=Development;
+
+then edit file default.list and/or  mimeapps.list (if there's any, in directory that contain .desktop, eg /usr/share/applications, /usr/local/share/applicationsetc), go to section 'text/plain' and alter it with vim.desktop
+eg:
+text/plain=gedit.desktop;vim.desktop;
+
+afer add vim, add firefox, sqldeveloper.
+done
+
+
+RPM thingy
+----------
+to find dependencies for a rpm file:	
+rpm -qpR <rpmfiles>.rpm
+rpm -qR <package-name>
+
+to query rpm package by installed date:
+#rpm -qa --queryformat '%{installtime} (%{installtime:date}) %{name}\n' | sort -n
+or simply just:
+#rpm -qa --last | less 
+(with last installed result is on top)
+
+to check all installed packages:
+rpm -qa
+
+to list package dependencies of a package:
+rpm -ql <package-name>
+
+
+install libreoffice:
+-------------------
+download at libreoffice.org, choose 64bit rpm installer.
+then extract and insall some packages that really needed:
+
+libreoffice3.4-redhat-menus-3.4-502.noarch
+(maybe not really needed)libobasis3.4-gnome-integration-3.4.5-502      
+libreoffice3.4-impress-3.4.5-502              
+libobasis3.4-impress-3.4.5-502                
+libreoffice3.4-en-US-3.4.5-502                
+libobasis3.4-en-US-res-3.4.5-502              
+libobasis3.4-en-US-calc-3.4.5-502             
+(maybe not needed)libobasis3.4-en-US-math-3.4.5-502             
+libobasis3.4-en-US-writer-3.4.5-502           
+libobasis3.4-en-US-base-3.4.5-502             
+libobasis3.4-en-US-3.4.5-502                  
+libreoffice3.4-calc-3.4.5-502                 
+libobasis3.4-calc-3.4.5-502                   
+libreoffice3.4-writer-3.4.5-502               
+libobasis3.4-writer-3.4.5-502                 
+libreoffice3.4-3.4.5-502                      
+libobasis3.4-images-3.4.5-502                 
+libobasis3.4-core07-3.4.5-502                 
+libobasis3.4-core06-3.4.5-502                 
+libobasis3.4-core05-3.4.5-502                 
+libobasis3.4-core04-3.4.5-502                 
+libobasis3.4-core03-3.4.5-502                 
+libobasis3.4-core02-3.4.5-502                 
+libobasis3.4-core01-3.4.5-502                 
+libreoffice3.4-ure-3.4.5-502                  
+
+
+latex
+------
+to install latex2pdf (with beamer for presentation, a distinct blue and white presentation)
+yum install latex-beamer or ??
+yum install tetex-beamer  ??
+yum install texlive-texmf-latex ??
+
+there's also vim plugin to create latex : vim-latex
+
+
+iteration in shell script:
+-----------------------
+for friend in a b c
+do
+echo "hallo $friend"
+done
+
+
+mount ntfs in centos:
+/sbin/mount.ntfs /dev/sdc1 /media/H2 -o
+rw,nosuid,nodev,uhelper=udisks,uid=500,gid=500,dmask=0077
+
+to display list of group software
+yum grouplist
+
+
+ssh broken pipe:
+----------------
+add the line below to client configuration in /etc/ssh/ssh_config to avoid “Write failed: Broken pipe” issue.
+ServerAliveInterval 120
+
+or on server, Instead of ServerAliveInterval, enable ClientAliveInterval.
+It’s a matter of personal preference, but I use these values:
+ClientAliveInterval 15
+ClientAliveCountMax 3
+
+to run process in background use & at the end of command and use nohup to be 
+able to logout of current terminal without killing the background process.
+nohup -> run a command immune to hangups, with output to a non-tty
+
+
+===enable remote desktop / XDMCP===
+to enable the X Display Manager Control Protocol (XDMCP) on centos:
+edit file /etc/gdm/custom.conf
+add lines :
+[security]
+AllowRemoteRoot=true
+DisallowTCP=false
+
+[xdmcp]
+Enable=true
+
+then execute:
+init 3
+init 5
+=== end of XDMCP===
+
+===rename multiple files:===
+we could use 'rename' command to rename multiple files at once with regex.
+but not very advance, it just for patterned file.
+
+for other we might use traditional way:
+
+ls | grep ^[0-9][0-9][0-9] > ~/a.txt
+vi a.txt
+:%s/^/"/g
+:%s/$/"/g
+
+ls | grep ^[0-9][0-9][0-9] | cut -d- -f2- > ~/b.txt
+vi b.txt
+:%s/^/"/g
+:%s/$/"/g
+:%s/^/\ /g
+
+cat a.txt b.txt > c.txt
+rev c.txt > d.txt
+sort -r d.txt > e.txt
+rev e.txt > f.txt
+vi f.txt
+:%s/mp3"\n /mp3"  /g
+:%s/^/mv /g
+
+add #!/bin/sh
+
+chmod +x f.txt
+./f.txt
+
+===end of rename multiple files===
+
+(gnome trick) Edit/remove 'run a command' history:
+/home/some_user/.gconf/apps/gnome-settings/gnome-panel/%gconf.xml
+
+
+change linux hostname :
+sysctl kernel.hostname=router.some_domain.org
+or edit /etc/sysctl.conf
+kernel.hostname = router.some_domain.org
+
+ssh banner is defined in sshd_config.hmm..not really important though
+why dont use motd, hehe
+
+default lenght in rfc and man is 78 character
+
+things to backup in case of migratation or something
+~/.bashrc
+~/.vimrc
+/etc/hosts
+
+
+
+Catatan Fedora 17 ku
+---------------------
+after finished intall fedora:
+#yum update -y
+#yum install wget
+#wget https://dl-ssl.google.com/linux/linux_signing_key.pub (not necessary, I suppose)
+#rpm --import linux_signing_key.pub (not necessary, I suppose)
+download latest stable chrome from http://google.com/chrome  
+#yum install redhat-lsb
+#rpm -ivh google-chrome-stable_current_x86_64.rpm
+
+install rpmfusion:
+#wget http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-stable.noarch.rpm
+#rpm -ivh rpmfusion-free-release-stable.noarch.rpm
+#yum install smplayer
+#yum install gstreamer
+
+install libreoffice:
+#yum install libreoffice-{writer,calc,impress}
+
+download sqldeveloper from oracle.com
+#rpm -ivh sql-developer.3.x.x.rpm 
+
+remove gedit:
+#yum remove gedit
+
+disable services:
+#systemctl stop bluetooth.service
+#systemctl disable bluetooth.service
+#systemctl disable iptables.service
+#systemctl disable ip6tables.service
+#systemctl disable sendmail.service
+#systemctl disable sm-client.service
+#systemctl disable cups.service
+#systemctl disable lvm2-monitor.service
+#systemctl disable abrtd.service
+
+# systemctl stop system-setup-keyboard.service
+# systemctl disable system-setup-keyboard.service
+# systemctl stop colord-sane.service
+# systemctl disable colord-sane.service
+# systemctl stop colord.service
+# systemctl disable colord.service
+ 
+
+
+to edit grub2 to make windows firstboot
+#grep Windows /boot/grub2/grub.cfg
+#grub2-set-default "Windows 7 (loader) (on /dev/sda2)"
+#grub2-editenv list
+#grub2-mkconfig -o /boot/grub2/grub.cfg
+
+to remove the delay when mistakely type a command and resulting a long respond output:
+bash: <your command>: command not found...
+edit file ~/.bashrc, and append:
+unset command_not_found_handle
+
+to see input device
+$ xinput list
+
+to make two finger tap become middle click, 
+type (as ordinary user):
+$ synclient TapButton2=2
+$ synclient TapButton3=3
+
+Remove Universal Access & Bluetooth buton from panel gnome-shell:
+#vi /usr/share/gnome-shell/js/ui/panel.js
+
+remove a11y and bluetooth from line:
+const STANDARD_STATUS_AREA_ORDER = ['a11y', 'keyboard', 'volume', 'bluetooth', 'network', 'battery', 'userMenu'];
+and become:
+const STANDARD_STATUS_AREA_ORDER = ['keyboard', 'volume', 'network', 'battery', 'userMenu'];
+
+
+remove abrt:
+------------
+systemctl --all | grep abrt
+systemctl disable abrt-oops.service
+systemctl disable abrt-vmcore.service
+yum remove abrt*
+rm -r /var/cache/abrt/ (if there is any)
+locate abrt
+rm *abrt*
+
+remove from group
+yum group list
+yum group remove "something.."
+
+remove social fucking media updates...
+yum remove im-chooser
+
+install kde desktop environtment:
+#yum groupinstall "KDE Software Compilation"
+
+install xmonad desktop environtment:
+# yum install xmonad
+
+install cinamon desktop environtment.
+download the rpm of muffin and cinamon from :
+# lynx repos.fedorapeople.org/repos/leigh123linux/cinnamon/fedora-17/x86_64/
+install muffin first
+# rpm -ivh muffin-1.0.3-3.fc17.x86_64.rpm
+then install cnamon
+# rpm -ivh cinnamon-1.4.0-5.UP1.fc17.x86_64.rpm
+logout and relogin with session cinamon
+
+install Xfce desktop environtment
+# yum install Xfce
+
+
+to make man page colorful, install most
+# yum install most
+then append in ~/.bashrc
+export PAGER="most"
+
+install multixterm: (I think it's dont really needed, so no need to install it)
+# yum install expect
+# yum install expectk
+
+install alternative terminal (rxvt) (this is used for xmonad):
+# yum install rxvt-unicode
+
+and make rxvt terminal transparent by creating file : ~/.Xdefaults
+## urxvt config
+#URxvt*termName: rxvt
+URxvt*termName: xterm
+URxvt*background:  #00FFFF
+#URxvt*foreground:  #A8A8A8
+URxvt*foreground:  #000000
+URxvt*scrollBar_right:	false
+URxvt*scrollBar:	false
+#URxvt*borderLess:	true
+URxvt*inheritPixmap:	true
+#URxvt*font: xft:terminus-font:size=12x24
+URxvt*color0:      #000000
+URxvt*color1:      #A80000
+URxvt*color2:      #00A800
+URxvt*color3:      #A85400
+URxvt*color4:      #0000A8
+URxvt*color5:      #A800A8
+URxvt*color6:      #00A8A8
+URxvt*color7:      #A8A8A8
+URxvt*color8:      #545054
+URxvt*color9:      #F85450
+URxvt*color10:     #50FC50
+URxvt*color11:     #F2FC50
+URxvt*color12:     #5054F8
+URxvt*color13:     #F854F8
+URxvt*color14:     #50FCF8
+URxvt*color15:     #F8FCF8
+
+## xterm config
+xterm*termName: xterm
+#xterm*background: #000000
+xterm*background: #00FFFF
+#xterm*foreground: #A8A8A8
+xterm*foreground: #000000
+
+
+to change gnome login background 
+--------------------------------
+# su -
+# su - gdm -s /bin/bash
+# `dbus-launch | sed "s/^/export /"`
+GSETTINGS_BACKEND=dconf gsettings set org.gnome.desktop.background picture-uri "file:///usr/share/backgrounds/gnome/GreenMeadow.jpg"
+
+for GNOME3 (but above command is also working, so its ok)
+# su -
+# su - gdm -s /bin/bash
+# `dbus-launch | sed "s/^/export /"`
+GSETTINGS_BACKEND=dconf gsettings set org.gnome.desktop.interface gtk-theme "THEME_NAME"
+change THEME_NAME with your theme, usually located in /usr/share/themes
+
+to install volume in xmonad:
+yum install cabal-install
+cabal update -> ndak mau update..
+cabal install xmonad-extras
+
+how to restart gnome:
+ps -ef | grep gnome-binary
+kill pid of gnome-binary
+
+to kill a process by name, use :
+killall
+pkill
+pgrep
+
+how to make xmonad xterm send one command to all terminal. one of which is clusterssh (cssh)
+yum install clusterssh -> send command to multiple terminals after login ssh
+
+install ubuntu font 
+download the zip file at http://font.ubuntu.com
+unzip,rename and put it in /usr/share/fonts
+
+install screen:
+yum install screen
+
+install bluecurve theme (only for gnome 2.x)
+download Bluecurve-Theme.tar.gz
+
+remove burner:
+yum remove k3b
+
+remove kde games:
+yum remove kdegames
+yum remove kdegames-libs
+abis ngeremove app, ingat buat ngremove juga libs2 nya
+
+yum remove bluedev (this is kde bluetooth manager)
+remove printers, bayesian from add/remove program
+yum remove leafpad-0.8.18.1-4.fc17.x86_64
+yum remove konversation -> IRC client
+yum remove gnugo
+yum remove telepathy -> chating in kde
+yum remove marble -> virtualgoble and world atlas
+yum remove ktorent -> torent client for kde
+yum remove orange -> time management xfce
+yum remove festifal -> kde speech to text
+remove group Educational Software nya kde
+remove group Electronic Lab -> kde
+remove group robotic
+yum remove scribus (yng ada di Design Suite group)
+
+
+
+how to start sshd server on fedora 17:
+-------------------------------------
+systemctl enable sshd.service
+systemctl start sshd.service
+
+to disable sshd:
+systemctl stop sshd.service
+systemctl disable sshd.service
+
+
+install fedora utils: (I dont really use this for now, maybe uninstall it)
+su -
+curl http://master.dl.sourceforge.net/project/fedorautils/fedorautils.repo -o /etc/yum.repos.d/fedorautils.repo && yum install fedorautils
+
+
+install gnome tweak: ( I dont really use this at least for now maybe uninstall it)
+yum install gnome-tweak-tool -> still learning to use this. suppose to be fun.
+
+
+install opera: ( later I uninstall this again)
+download from www.opera.com
+pilih file linux and rpm version, eg : opera-11.64-1403.x86_64.rpm, lalu install:
+rpm -ivh opera-11.64-1403.x86_64.rpm
+
+
+install yum fastest mirror: (I think it's doesn't really usefull, but well, why not.)
+yum install yum-fastestmirror -
+
+
+install rar support: (not yet installed, why would we want to still use RAR?hehe)
+yum install unrar 
+
+
+more to remove..
+yum remove plotutils -> used for vector and raster graphic utility
+yum remove kdemultimedia-dragonplayer-4.8.3-1.fc17.x86_64 -> player for kde, lame one.
+
+
+change lock screen background fedora 17:
+cd /usr/share/backgrounds/beefy-miracle/default
+change the image of beefy-miracle.png in folder : normalish, standard and wide.
+
+to change start menu icon, fedora start menu icons is in /usr/share/icons/Bluecurve/24x24/apps/icon-panel-menu.png
+
+
+install true type font at fedora
+(is this the same as ms-font??):
+================================
+yum install rpm-build cabextract ttmkfdir
+download/search the latest msttcorefonts from internet. in this case :msttcore-fonts-2.0-3
+install it:
+rpm -ivh msttcorefonts-2.x.x.rpm
+
+or download the spec file from internet, eg msttcore-fonts-2.0-3.spec.
+then build it using:
+rpmbuild -bb msttcore-fonts-2.0-3.spec
+
+damn.. not success.
+remove this msstfont because this rpm cause system broken
+rpm -e msttcorefonts-1.3-4.noarch --noscripts
+
+so, after a while, this is the solution:
+to install ms font in fedora, we need to install msttcorefonts.
+in order to install msttcorefonts we need to install chkfontpath.
+download chkfontpath from http://packages.atrpms.net/dist/f17/chkfontpath/
+before install chkfontpath, first install its dependency: xfs
+yum install xfs
+
+now, install it
+rpm -ivh chkfontpath-1.10.1-2.fc17.x86_64.rpm
+
+now download msttcore fonts from 
+ftp://rpmfind.net/linux/sourceforge/p/po/postinstaller/fuduntu/msttcorefonts-2.0-2.noarch.rpm
+
+finnally install msttcorefonts
+rpm -ivh msttcorefonts-2.0-2.noarch.rpm 
+success
+
+
+to prevent normal user to execute some commands, just use chmod.
+which rpm
+chmod o-x /bin/rpm
+which yum
+chmod o-x /bin/yum
+chmod o-x /bin/
+
+to see the list that cannot be executed by normal user use:
+find /bin ! -perm /o+x -print
+find /usr/bin ! -perm /o+x -print
+
+
+when boot up we got error : boot/grub2/locale/en.mo.gz not found
+to solve the problem, just do this:
+cd /boot/grub2/locale
+ln -s en@quot.mo en.mo
+
+
+audio control in xmonad
+=======================
+install xmonad extras for xmonad audio control
+
+How to resolve “Could not find module XMonad.Actions.Volume”:
+You need to install xmonad-extras from Hackage as the volume control
+functions are not included by default in any standard XMonad install.
+
+run as some_user : 
+cabal update -> take time
+cabal install cabal-install -> take time
+cabal install xmonad-extras -> failed, got error
+
+the error:
+Resolving dependencies...
+cabal: cannot configure hint-0.3.3.4. It requires ghc >6.6
+There is no available version of ghc that satisfies >6.6
+
+
+change theme in fedora 17
+=========================
+install gnome tweak and gnome-shell-extension-user-theme
+yum install gnome-tweak-tool gnome-shell-extension-user-theme
+
+Download theme from gnome-look.org eg Adwaita Cupertino 
+
+extract the downloaded file and put in 
+/usr/share/themes
+Ubah Theme :
+
+open gnome-tweak-tool then go to menu list "Shell Extensions" then activated "User Theme Extension"
+
+go to menu list theme and edit
+- GTK+ theme become your theme: Adwaita Cupertion L
+- Window theme become your theme: Adwaita Cupertion L
+
+
+remove im/online account notification in gnome:
+=================================
+I think this is im setting in gnome, so remove it
+# rpm -e libpurple-2.10.4-1.fc17.x86_64
+salah besar, hmm.. jadi di mana ini buat remove IM Notification di gnome itu?
+
+
+
+
+yum search gnome-shell-theme -> theme
+yum search nimbus  -> opensholaris theme
+
+back to old gnome:
+rpm -e gnome-panel
+yum install gnome-desktop
+
+
+to delete user in solaris 11:
+userdel -r oracle
+
+
+=======
+how to get yesterday date in bash?
+date -d ’1 day ago’ +%Y%m%d   or
+date -d ’yesterday’ +%F       or
+date --date 'yesterday' +%F-%H-%M-%S   or
+date -d @`echo $((\`date +%s\` - 86400))` +%Y%m%d or
+date --date='-1 day' or
+intinya:
+date --d "STRING" or date --date="STRING"
+date --date="next Friday"
+date --date="2 days ago"
+date --date='yesterday'
+date --date='1 day ago'
+date --date='10 day ago'
+date --date='10 week ago'
+date --date='10 month ago'
+date --date='10 year ago'
+
+
+Find tomorrow's date
+Type the following command
+date --date="-1 days ago" Or
+date --date="next day" +%F
+date --date='tomorrow'         
+date --date='1 day'             
+date --date='10 day'
+date --date='10 week'
+date --date='10 month'
+date --date='10 year'
+
+haven't try it on solaris yet though, nampaknya ndak bisa di solaris
+=======
+
+to connect to vpn server with cisco compatible, we can use vpnc.
+jadi vpnc itu utk server yg pake cisco compatible vpn
+jadi, untuk server openvpn, clientnnya pake oenvpn juga kan(?)
+
+
+/var/spool/cron/crontabs/ is where crontab is stored
+utk uji wireless -> software inssider 
+
+
+
+
+install sshd on ubuntu:
+apt-get install openssh-server
+apt-get install vsftpd
+
+
+
+========DISABLE GUI=============
+To disable the solaris GUI 
+[root@solaris1:/root]/usr/dt/bin/dtconfig -d
+done
+desktop auto-start disabled.
+
+
+And, to enable it again: 
+/usr/dt/bin/dtconfig -e
+
+
+To disable ubuntu GUI:
+vi /etc/default/grub
+then change :
+#GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
+to:
+GRUB_CMDLINE_LINUX_DEFAULT="text"
+
+
+in solaris 11:
+root@solaris11:/usr/dt/bin# svcadm disable gdm
+
+
+
+enable root login at solaris 11:
+vi /etc/user_attr
+change from:
+#root::::type=role
+to:
+root::::type=
+
+
+===
+apt-get update
+apt-get upgrade
+
+16126D3A3E5C1192
+
+
+
+
+
+------
+
+
+install apps with yum without installing it, only download. use yum-downloadonly.
+
+first install yum-downloadonly
+yum install yum-downloadonly
+
+edit config
+/etc/yum/pluginconf.d/downloadonly.conf
+[main]
+enabled=1
+
+then download anything you want
+# yum install --downloadonly mailx
+
+the output is in /var/cache/yum/
+cd /var/cache/yum/
+
+or we can specify the output in
+#yum install --downloadonly --downloaddir=/root mailx
+
+
+kalau misalnya paket tersebut sudah ada dan kita tetap ingin mendownloadnya maka bisa pakai yumdownloader. misal kita sudah punya
+[root@centos1 ~]# rpm -qa | grep mailx
+mailx-12.4-6.el6.x86_64
+[root@centos1 ~]#
+
+maka kita bisa mendownload paket tersebut dengan yumdownloader:
+
+# yumdownloader mailx-12.4-6.el6.x86_64
+
+maka kita akan dapat file mailx-12.4-6.el6.x86_64.rpm nya.
+
+
+------
+EMAIL ALLERT WHEN THE SERVER IS REBOOT:
+
+Running job at statup (boot)
+We need to use special string called @reboot. It will run once, at startup after reboot command.
+@reboot configures a job to run once when the daemon is started. Since cron is typically never restarted, this typically corresponds to the machine being booted
+
+crontab -e
+# Email alert if the server is rebooted
+@reboot echo "Server has restarted " `hostname` | mail -s "server restart" some_user@your_company.com
+
+DONE
+-----
+
+to install program nslookup 
+host, dig and nslookup are part of bind-utils so to install them we can use:
+yum install bind-utils
+
+----- 
+
+
+check stopped prosess :
+
+ps -efl | grep T
+PROCESS STATE CODES
+D uninterruptible sleep (usually IO)
+R runnable (on run queue)
+S sleeping
+T traced or stopped
+Z a defunct ("zombie") process
+
+-----
+to upgrade to fedora 18:
+Install the new Fedora 18 gpg key: 
+#su -c 'rpm --import https://fedoraproject.org/static/DE7F38BD.txt'
+Set SELinux to Permissive mode: su -c 'setenforce Permissive'
+set selinux is a must.. ikuti ajalah
+Upgrade all packages:
+#su -c 'yum update yum'
+#su -c 'yum clean all'
+#su -c 'yum --releasever=18 --disableplugin=presto distro-sync' 
+Rebuild rpm database: 
+# su -c 'rpm --rebuilddb'
+or rpm -qa will not work due to an upgrade of rpm
+
+-----
+
+prioriy repo
+yum install yum-plugin-priorities
+
+vi /etc/yum/pluginconf.d/priorities.conf 
+
+[main]
+enabled=1
+
+then edit repo, add
+priority=N
+
+N from 1 to 99
+the most priority is 1
+
+----------
+(windows)
+to solve wireshark problem "NPF driver isn't running":
+open cmd as administrator, type:
+net start npf
+
+------------
+
+to check what is the yum, use whatprovides:   
+# yum whatprovides 'perl(Net::LDAP)'
+# yum whatprovides libapphb.so.2
+
+
+to install gd
+yum install php-gd
+
+if you have problem with ld-linux.so.2 
+yum install glibc.i686
+
+to view open port at linux
+# netstat -plnt | grep ':80'  
+
+===========================
+Java control panel location:
+/usr/java/latest/jre/bin
+
+to add specific url, to go tab security -> Edit Site List, add your url
+
+========================
+
+to make all lowercase in vim:
+VGu
+
+make sure that TUN/TAP interface is installed and enabled
+#cat /dev/net/tun
+if there's output like \94 File Descriptor is in bad state\94 , then TUN/TAP is installed.
+
+install EPEL
+#rpm -Uvh http://download.fedora.redhat.com/pub/epel/5/i386/epel-release-5-4.noarch.rpm
+
+yum install openvpn
+
+OpenVPN uses easy-rsa as its encryption tools:
+#cp -R /usr/share/openvpn/easy-rsa/ /etc/openvpn
+
+configure public key infrastructure variables
+At the end of the file change the email to email of your choice
+#vi /etc/openvpn/easy-rsa/2.0/vars
+
+initialize Public key infrastructure and build our own Certificate Authority. Issue the following commands one by one.
+
+#cd /etc/openvpn/easy-rsa/2.0/
+#. /etc/openvpn/easy-rsa/2.0/vars
+#. /etc/openvpn/easy-rsa/2.0/clean-all
+#. /etc/openvpn/easy-rsa/2.0/build-ca
+
+
+#. /etc/openvpn/easy-rsa/2.0/build-key-server server
+
+Just hit enter as many times as it is asked
+
+create client keys. Issue the following command:
+. /etc/openvpn/easy-rsa/2.0/build-key client1
+
+generate Diffie Hellman Parameters which are needed for key exchange and authentication with OpenVPN server on VPS. Issue the following command.
+
+. /etc/openvpn/easy-rsa/2.0/build-dh
+
+copy serveral files to /etc/openvpn:
+cd /etc/openvpn/easy-rsa/2.0/keys
+cp ca.crt ca.key dh1024.pem server.crt server.key /etc/openvpn
+
+configure the client.conf file on the VPS server 
+
+cp /usr/share/doc/openvpn-2.1.4/sample-config-files/server.conf /etc/openvpn/
+cp /usr/share/doc/openvpn-2.1.4/sample-config-files/client.conf ~/
+cd ~
+ vi ~/client.conf
+
+here, edit the IP of the VPS server and change client.crt and client.key to client1.crt and client1.key.
+
+
+start it:
+/etc/init.d/openvpn start
+
+chkconfig openvpn on
+
+edit server.conf:
+vi /etc/openvpn/server.conf
+
+configure forwarding option:
+vi /etc/sysctl.conf
+Change
+net.ipv4.ip_forward = 0
+to
+net.ipv4.ip_forward = 1
+
+Now we set this variable for the current session by issuing the following command.
+echo 1 > /proc/sys/net/ipv4/ip_forward
+
+Now we will install dnsmasq package so that our browser traffic is also routed through the Openvpn on our Centos VPS server. Issue the following commands one by one.
+
+yum install dnsmasq
+/etc/init.d/dnsmasq start
+chkconfig dnsmasq on
+and configure server.conf again
+vi /etc/openvpn/server.conf
+push "dhcp-option DNS 10.8.0.1"
+
+/etc/init.d/openvpn restart
+
+
+catatan proxy
+===============
+
+misalkan telah tersedia komputer dengan ip 167.205.32.23 dengan OS fedora yang akan digunakan sebagai server proxy.
+
+langkah-langkah yang harus dilakukan untuk menginstall server proxy
+pertama pastikan paket untuk proxy telah tersedia.
+di sini kita memakai squid.
+instal squid dengan perintah :
+#yum install squid
+
+selanjutnya kita atur konfigurasi squid
+#cd /etc/squid
+di sini, edit file squid.conf
+#vi squid.conf
+
+sebenarnya sudah ada konfigurasi standar. dan dapat langsung dipakai.
+untuk opitimasi, hal yang penting untuk dilakukan adalah sbb :
+
+a. sebelum merubah configurasi squid.conf ada baiknya kita perlu mengbackup file squid.conf
+#cp squid.conf squid.conf.ori
+
+b. ganti domain alamat dan port serta administrator  yang diinginkan
+- cari kata cache_mem, kemudian masukan nilai yang dimasukkan. sebagai perbandingan pada server cache-stei saat ini menggunakan cache-mem = 32 mega
+- cari kata cache_dir, merupakan tempat diletakkannya file cache. tempat defaultnya telah ada tetapi bila ingin diganti bisa dirubah di sini
+sebagai perbandingan di server cache /var/spool/squid/cache 
+
+c. host dan default port untuk system proxy
+
+d. tambahkan ACL ACL yang diperlukan 
+
+
+setelah semuanya diedit..
+jalankan perintah berikut untuk membuat cache directorynya..
+#squid -z
+(cukup sekali aja)
+
+jika ingin melihat debug (opsional), jalankan :
+#squid NCd1
+
+jika ada masalah, dapat dilihat log di /var/log/squid/access.log dan /var/log/squid/cache.log
+
+kemudian dapat dijalankan squid dengan perintah 
+#/etc/init.d/squid start
+
+agar dapat hidup otomatis, jalankan
+#chkconfig --level 35 squid on
+
+
+untuk tambahan, dapat diinstall program ganti password seperti chpasswd, program statistik and monitoring seperti lightsquid dan sqstat (untuk statistik pengguna)
+
+tidak lupa, apache juga diperlukan
+install apache
+==============
+#yum install apache2
+edit file-file yang diperlukan
+vi httpd.conf
+
+
+install chpasswd
+================
+to make user interface for user to change the password, we can use sarg (http://sarg.sourceforge.net) 
+we can use chpasswd to do this. download it at (http://sarg.sourceforge.net/chpasswd.php)
+
+extract the file:
+tar xzvf chpasswd-2.2.4.tar.gz
+
+then change to directory :
+cd chpasswd-2.2.4
+
+and execute (tambahan opsi utk bahasa indonesia)
+./configure --prefix=/etc/squid/chpasswd --enable-language=Indonesian
+
+make
+
+make install
+
+cd /etc/squid/chpasswd
+vi /usr/local/etc/chpasswd/chpasswd.conf
+vi chpasswd.conf
+(edit sesuai kebutuhan --> lihat lagi configurasi cache)
+
+
+install lightsquid
+==================
+jika tidak bisa dengan yum install lightsquid maka dapat diambil dari situs resmi di http://lightsquid.org/download (confirm lagi)
+
+lightsquid configuration files and scripts for Apache.(as described by yum info)
+Lets first search for the package
+$ yum search lightsquid-apache
+lightsquid-apache.noarch : Web Controls for lightsquid
+Note that you must be the root/administrator to install the package. To install this package in Red Hat/Fedora Linux.
+$ yum install lightsquid-apache
+You can check the details of this package lightsquid-apache
+$ yum info lightsquid-apache
+You can also download lightsquid-apache from here
+
+
+setelah mendapatkan file installer, misalnya filenya bernama lightsquid.2.0.tar.gz
+kita lakukan installasi dan konfigurasi lightsquid :
+ekstrak dan letakan folder lightsquid.2.0.tar.gz di tempat apache yaitu /var/www/html/lightsquid
+#cp lightsquid.2.0.tar.gz /var/www/html
+#tar xzvf lightsquid.2.0.tar.gz
+#mv lightsquid.2.0 lightsquid
+lalu masuk ke folder lightsquid
+#cd lightsquid
+
+buat semua script menjadi executeable:
+#chmod +x *.cgi
+#chmod +x *.pl
+
+ganti kepemilikin menjadi apache:apache
+#chown -R apache:apache *
+
+di apachenya,/etc/httpd/conf/httpd.conf
+
+<Directory "/var/www/html/lightsquid">
+       AddHandler cgi-script .cgi
+       AllowOverride All
+        Order Deny,Allow
+        Allow from 167.205.0.0/16
+        #allow from 167.205.35.227
+        Deny from All
+</Directory>
+
+
+di sini, edit file lightsquid.cfg
+#vi lightsquid.cfg
+
+
+then run 
+#./check-setup.pl
+check jika ada error cek config file.
+
+then 
+#./lightparser.pl
+ini akan memparsing file access.log
+
+untuk parse old statistic:
+./lightparser.pl access.log.1.{gz|bz2}
+./lightparser.pl access.log.2.{gz|bz2}
+./lightparser.pl access.log.3.{gz|bz2}
+
+then
+#crontab -e
+This example will execute parser every 20 minutes
+*/20 * * * * /var/www/htdocs/lightsquid/lightparser.pl today
+
+[root@cache-stei ~]# crontab -l
+58 11 * * * /etc/webmin/cron/tempdelete.pl
+0 * * * * /etc/webmin/bandwidth/rotate.pl
+0 0 * * * /etc/webmin/webalizer/webalizer.pl /var/log/squid/access.log
+*/1 * * * * env LANG=C /usr/bin/mrtg /root/mrtg.cfg
+*/1 * * * * env LANG=C /usr/bin/mrtg /root/mrtg-squid.cfg
+*/55 * * * * /var/www/html/lightsquid/lightparser.pl today
+*/1 * * * * sh /root/sysconfig/realtime_access.sh
+
+tambahkan di crontab
+*/55 * * * * /var/www/html/lightsquid/lightparser.pl today
+
+if you have small log and fast machine, you may run lightparser with smaller delay
+warning not set interval less 10 min
+
+lalu coba akses
+http://ip-server/lightsquid
+
+
+tambahkan .htaccess berisi file dari chpasswd di folder lightsquid agar tidak bisa diakses oleh sembarang orang.
+
+/usr/sbin/chpasswd /etc/squid/passwd
+
+atau
+
+htpasswd /etc/squid/passwd <user-name>
+
+
+untuk tambahkan user, we can use :
+htpasswd /etc/squid/passwd <user-name>
+
+
+===
+
+install squint:
+download squint
+extract
+read INSTALL
+
+INSTALLATION
+ # tar -zxvf squint.tgz
+        I hope this part is easy enough
+
+ # cp squint.pl squint.cron.sh /usr/local/bin
+        Install the binaries in a nice place
+
+ # squint.cron.sh init
+        This creates a place for the reports in
+        /usr/local/httpd/htdocs (or whereever the htdocs
+        directory is found).  It installs a crontab entry to run
+        the report daily, weekly and monthly.  You may wish to
+        edit the crontab entry first -- the system has not been
+        optimised for security, and runs (unnecessarily) as the
+        user root, rather than the user squid.
+
+        Note that if you run squint.cron.sh at all, it is likely to make
+        crontab entries for you (!)
+
+ # squint.cron.sh all
+        Create current daily, weekly and monthly reports -- don't
+        do this twice! -- the reports get rotated every time you
+        run the task, so things can get a little messy.
+
+ # squint.cron.sh regen
+        Recreate all the reports for your initial system, and
+        also for when the program manges to mess things up.  You
+        need to run this to maintain weekly and monthly reports
+        if your server happens to miss a cron job.
+
+investigate what is redhat clustering? in detail.
+load balancing?
+how much for licencing?
+
+
+
+
+Redhat Cluster Suite, from the big picture, is the same as VCS (Veritas
+Cluster Service), a High Availability software.
+for the last few years, the red hat cluster suite is know as Red Hat High Availability Add-on.
+
+What is redhat clustering/Red Hat High Availability Add-on?
+Red Hat High Availability Add-On allows you to connect a group of computers (called nodes or
+members) to work together as a cluster. You can use Red Hat High Availability Add-On to suit your
+clustering needs (for example, setting up a cluster for sharing files on a GFS2 file system or setting up
+service failover)
+
+Oracle with redhat clustering?
+Red Hat Cluster Suite is implementation for Oracle closely models the VCS
+software, so customers familiar with them, will be immediately famililiar with
+Red Hat Cluster Suite Oracle HA. Of course, the devil is most definitely in
+the details.
+
+
+Load balancing
+Load-balancing clusters dispatch network service requests to multiple cluster
+nodes to balance the request load among the cluster nodes. Load balancing
+provides cost-effective scalability because you can match the number of nodes
+according to load requirements.  
+If a node in a loadbalancing cluster becomes inoperative, the load-balancing 
+software detects the failure and redirects requests to other cluster nodes. 
+Node failures in a load-balancing cluster are not visible from clients outside
+the cluster. 
+Red Hat Cluster Suite provides load-balancing through LVS (Linux Virtual
+Server). 
+
+
+Licence
+This High Availability is free, as far as I know.
+
+
+Installing RHCS:
+We use centos 6.2 for testing (then decide to use oracle linux), but 
+basically it's same as RHEL, even the packages and prety much anything.
+
+The minimum installation of RedHat Cluster consists of :
+* the Cluster Manager package (cman), and 
+* the Resource Group Manager package (rgmanager).
+
+
+Steps (assume that we already finished installing Centos):
+
+mostly, you need to execute the rest of the step on both of node that we will
+install cluster on,  unless otherwise stated.
+
+Install packages (if not yet installed during OS installation):
+#yum groupinstall "High Availability"
+#yum groupinstall "High Availability Management"
+
+
+Preparation:
+
+Make sure nodes can communicate and know each other.
+#vi /etc/hosts
+192.168.1.170 tb170
+192.168.1.171 tb171
+192.168.1.174 tb174
+
+Disable firewall 
+#system-config-firewall 
+uncheck for disable firewall
+
+Disable selinux
+#vi /etc/selinux/config 
+SELINUX=disabled
+
+You might need to reboot now, to apply selinux setting.
+#reboot
+
+Set static IP
+#vi /etc/sysconfig/network-scripts/ifcfg-eth0
+DEVICE="eth0"
+HWADDR=3C:4A:92:FA:B2:64 #depend on you hardware
+NM_CONTROLLED="yes"
+ONBOOT="yes"
+TYPE=Ethernet
+BOOTPROTO=static
+IPADDR=192.168.1.174 #depend on your ip addresss
+PREFIX=24 #depend on your mask
+GATEWAY=192.168.1.1 #depend on your gw
+DEFROUTE=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=no
+DNS1=192.168.1.1 #depend on your dns server
+DNS2=8.8.8.8 #depend on your dns server
+
+apply static IP
+#chkconfig network on -> this should be already on
+#service network restart 
+
+Disable network manager 
+#chkconfig NetworkManager off
+#service NetworkManager stop
+
+Disable some services at boot:
+#chkconfig iptables off
+#chkconfig ip6tables off
+
+Enable cluster service on boot:
+#chkconfig ricci on
+#chkconfig cman on
+#chkconfig rgmanager on
+#chkconfig modclusterd on
+
+Stop some services right now
+#service iptables stop
+#service ip6tables stop
+
+start service for clustering
+#service ricci start
+
+set password of user ricci, 
+this daemon user is needed to access other node in cluster, eg using ccs 
+command.
+#passwd ricci
+<ricci_pass>
+
+enable luci -> a web based cluster configuration.(optional)
+#chkconfig luci on 
+#service luci start
+#luci_admin init -> cannot do this, cannot find the binary/executeable
+#service luci restart
+
+now we can access web based cluster configuration at
+https://<server-addr>:8084
+user/password = ricci/<ricci_pass>
+
+luci vs ricci:
+luci : application server that provides the user interface for Conga -> 
+https://server-addr:8084
+ricci : node agent, users pass configuration details using the Luci interface,
+and the configuration is loaded in to corosync for distribution to cluster
+nodes.  
+One luci server can communicate with multiple ricci agents.
+
+
+Create default cluster configuration file (/etc/cluster/cluster.conf):   
+
+To create skeleton configuration for cluster named some_cluster with 2 nodes that has
+no vote:
+#ccs_tool create -2 some_cluster
+in ourcase, we will create like this, not a two_node and has 3 votes:
+#ccs_tool create some_cluster
+
+after this we need to manually alter/edit some lines so it becomes like this:
+#vi /etc/cluster/cluster.conf
+<?xml version="1.0"?>
+<cluster name="some_cluster" config_version="1">
+
+  <cman two_node="0" expected_votes="3"/>
+  <clusternodes>
+    <clusternode name="centos1" votes="1" nodeid="1">
+      <fence>
+        <method name="single">
+        </method>
+      </fence>
+    </clusternode>
+    <clusternode name="centos2" votes="1" nodeid="2">
+      <fence>
+        <method name="single">
+        </method>
+      </fence>
+    </clusternode>
+  </clusternodes>
+
+  <fencedevices>
+  </fencedevices>
+
+  <rm>
+    <failoverdomains/>
+    <resources/>
+  </rm>
+</cluster>
+
+
+after editing cluster.conf, dont forget to increment the field
+'config_version' by 1 and validate cluster.conf using:
+#ccs_config_validate
+
+to copy the configuration to other node.
+#ccs -f file -h host --setconf
+#ccs -f /etc/cluster/cluster.conf -h tb174 --setconf
+
+
+Finally starting cluster:
+#service cman start
+#service rgmanager start 
+#service modclusterd start
+
+
+you now can see log at /var/log/messages
+also in directory /var/log/cluster
+
+
+Red Hat Cluster Administration Tools :
+#clustat -> to display the current status of the cluster. (Sun Cluster equiv: 
+scstat)
+#clusvcadm -> Change the state of the services, such as enabling, disabling, 
+relocating, etc. (Sun Cluster equiv: scswitch)
+
+Managing Red Hat High Availability Add-On software:
+#system-config-cluster -> A Cluster Configuration GUI. It simplifies the 
+creation of a cluster.conf as well as acting as a GUI management interface. 
+But unfortunately this is not available on RHEL 6. 
+instead, use luci at https://<server-addr>:8084 or 
+manually edit /etc/cluster/cluster.conf or
+#ccs (Cluster Configuration System) command, this support since RHEL 6.1 and 
+later, which used to create, modify and view cluster configuration.
+
+
+other administration tools:
+#cman_tool -> Cluster manager tool
+
+#cman_tool nodes -f
+Node  Sts   Inc   Joined               Name
+   1   M     16   2012-02-20 20:29:35  tb174
+   2   M     36   2012-02-20 20:30:01  tb170
+
+
+group_tool -> This command provides information that you may find helpful in debugging your system. The following example shows the output of the group_tool(8) command:
+??
+Node  Sts   Inc   Joined               Name
+   1   M     16   2012-02-20 20:29:35  tb174
+   2   M     36   2012-02-20 20:30:01  tb170
+The Sts heading indicates the status of a node. A status of M indicates the node is a member of the cluster. A status of X indicates that the node is dead. The Inc heading indicating the incarnation number of a node, which is for debugging purposes only.
+   
+
+The cluster.conf file
+RHEL clusters keep their configuration in a single configuration file, 
+/etc/cluster/cluster.conf. 
+You may manage your cluster configuration in the following ways:
+* Editing the configuration file directly. This is the most straightforward method. 
+* Using the system-config-cluster GUI. This is a GUI application written in Python using Glade. It requires the availability of an X display (either directly on a server console, or tunneled via SSH) (unfortunatelly not available on the latest version of Redhat cluster, cmiiw)
+* Using the Conga web-based management infrastructure. The Conga infrastructure consists of a node agent (ricci) communicating with the local cluster manager, cluster resource manager, and cluster LVM daemon, and an administration web application (luci) which may be used to configure the cluster infrastructure using a simple web browser.
+
+
+cluster.conf explained:
+----------------------
+cluster.conf is basically a xml file.
+
+<?xml version="1.0"?>
+<cluster name="some_cluster" config_version="4">
+-> name=".." -> name of your cluster
+-> config_version="..." -> everytime you edit cluster.conf, you need to increment his version by 1.
+
+<cman two_node="1" expected_votes="1"/>
+two_nodes="1" > if this cluster contain two nodes, 1 is true
+expected_votes="1" vote by node in cluster. The expected_votes parameter is set to the number of nodes + 1, execept in 2 cluster, if one node is down, they dont know ?? so the quorum ??
+
+<clusternodes>
+ <clusternode name="tb170" nodeid="1">
+  <fence>
+      ...
+      ...
+  </fence>
+ </clusternode>
+</clusternodes>
+
+<rm log_facility="local4" log_level="5"> 
+rm = resource manager
+log_facility -> resouce manager logs to syslog
+
+for debugging, we can increase log level:
+0 : emerg 
+1 : alert 
+2 : crit 
+3 : err 
+4 : warning 
+5 : notice 
+6 : info 
+7 : debug
+put it in <rm log_level="7"> section
+
+ <failoverdomains>
+   <failoverdomain name="" nofailback="0" ordered="1" restredted="0">
+     <failoverdomainnode name="DB1a" priority="1"/>
+     <failoverdomainnode name="DB1b" priority="2"/>
+
+
+<resources>
+	<fs name="myfs" ...device="/dev/sda3" mountpoint="/ORACLE" fstype="ext4"/>
+	<ip address="10.1.1.2" ... monitor_link="yes"/>
+	<apache config_file="" name="" />
+</resources>
+
+<service name="foo" ...>
+1   <fs name="myfs" ...device="/dev/sda3" mountpoint="/ORACLE" fstype="ext4">
+2        <script name="script_child"/>
+    </fs>
+3   <ip address="10.1.1.2" ... monitor_link="yes"/>
+    <apache config_file="" name=""
+</service>
+1 and 3 are siblings
+2 is child of 1 and 1 is parent of 2.
+fs=filesystem resources
+
+	<service autostart="0" domain="OracleHA" exclusive="0" name="MAIN_DB" recovery="relocate">
+			<ip ref="192.168.1.175"/>
+			<oracledb
+home="/ORACLE/app/oracle/product/11.2.0/db_home1" name="YOUR_DB" type="base" listener_name="LISTENER2" user="oracle" vhost="192.168.1.175"/>
+	</service>
+oracledb parameter:
+name=oracle SID
+user=oracle user name
+home= oracle home
+type={base,10g} base-> just db and listener
+                base-em or 10g-> all: db,listener,emctl,isql*plus
+listener_name= oracle listener,if more than one, separeted it by whitespace,if empty, then it's disable
+vhost=virtualhostname
+ Note that during the start/stop of an oracledb
+                resource, your hostname will temporarily be changed to
+                this hostname.  As such, it is recommended that oracledb
+                resources be instanced as part of an exclusive service only.
+
+
+</rm>
+</cluster>
+
+
+
+you might edit the cluster.conf time and again. but do not forget, 
+after editing cluster.conf, increment the 'config_version' by 1 and validate cluster.conf using:
+#ccs_config_validate
+
+to spread and activate a cluster.conf file on cluster use:
+#ccs -f file -h host --setconf
+
+to verify that all node have the identical conf:
+#ccs -h host --checkconf
+
+to check conf on local:
+#ccs -f file --checkconf
+
+then see cluster status:
+#clustat
+
+
+
+FENCE
+Fence is very important in clustering, this should be configured well. 
+
+What is fence? 
+a 'fence' is used to ensure that only a single node at a time is using the data.
+
+to see available fence list:
+#ccs -h tb170 --lsfenceopts
+
+what is apc fence?
+apc is American Power Conversion, that manufacturer by schneider electric that used for power fencing -> see : 
+#ccs -h tb170 --lsfenceopts fence_apc
+
+test fencing with ??
+#fence_node
+
+fence and oracle HA:
+There are two fail-safe mechanisms in a typical Oracle HA configuration: 
+* the quorum voting disk service, qdisk, and 
+* the cman heartbeat mechanism that operates over the private, bonded network. 
+
+If either node fails to check-in within a prescribed time, actions are taken to remove, or fence the node from the rest of the active cluster. 
+Fencing is the most important job that a cluster product must do. 
+Inconsistent, or unreliable fencing can result in corruption of the Oracle database -- it must be bulletproof.
+
+can use HP iLO,combined with APC power distribution unit??
+
+
+Remove a node from cluster
+(execute in order)
+#service rgmanager stop
+#service fenced stop
+#service cman stop
+
+#chkconfig rgmanager off
+#chkconfig fenced off
+#chkconfig cman off
+
+
+to stop cluster services on all nodes (and chkconfig services off)
+#ccs -h host --stopall
+
+to start cluster services on all nodes (and chkconfig services on)
+#ccs -h host --startall
+
+
+to move service to another node:
+#clusvcadm -r <service> -m <node>
+eg:
+#clusvcadm -r VIP1 -m tb174
+Trying to relocate service:VIP1 to tb174...Success
+service:VIP1 is now running on tb174
+
+
+
+create cluster.conf using ccs command line:
+creating a cluster:
+ccs -h tb170 --createcluster some_cluster
+ccs -h tb170 --addnode tb170
+ccs -h tb170 --addnode tb174
+
+list node:
+ccs -h tb170 --lsnodes
+
+
+ccs -f tb170 [options] -> to edit local cluster.conf 
+ccs -h tb174 [options] -> to edit remote cluster.conf 
+
+create fence:
+ccs -h node1 --addfencedev myfence agent=fence_apc ipaddr=apc_ip_example
+login=login_example passwd=password_example
+
+
+install oracle linux
+tcsh
+ifconfig eth0 192.168.1.170 netmask 255.255.255.0 up
+vi /etc/sysconfig/network
+add some lines here..
+vi /etc/resolv.conf
+nameserver 8.8.8.8
+chkconfig NetworkManager off
+service NetworkManager stop
+vi /etc/gdm/custom.conf
+add some lines here..
+
+add oracle linux repo:
+cd /etc/yum.repos.d
+wget http://public-yum.oracle.com/public-yum-ol6.repo 
+vi public-yum-ol6.repo
+change -> enable=1
+now you can yumming
+
+
+
+install package from DVD / yumming from DVD:
+insert DVD
+mkdir /media/cdrom
+mount /dev/cdrom /media/cdrom
+edit file
+vi /etc/yum.repos.d/CentOS-Media.repo
+change enabled to 1
+enabled=1
+to just install package httpd from DVD only:
+yum --disablerep=\* --enablerepo=c6-media install httpd
+after finish installed,
+umount /media/cdrom
+rmdir /media/cdrom
+
+now, after install http, we will run http on top of cluster (HA for httpd).
+later we will add HA for oracle.
+
+add service httpd in RHCS
+
+first configure cluster.conf
+so it become like this:
+<?xml version="1.0"?>
+<cluster config_version="16" name="some_cluster">
+	<cman expected_votes="3" two_node="0"/>
+	<clusternodes>
+		<clusternode name="tb170" nodeid="1" votes="1">
+			<fence>
+				<method name="single"/>
+			</fence>
+		</clusternode>
+		<clusternode name="tb174" nodeid="2" votes="1">
+			<fence>
+				<method name="single"/>
+			</fence>
+		</clusternode>
+	</clusternodes>
+	<fencedevices/>
+	<rm>
+		<failoverdomains>
+			<failoverdomain name="failover_contoh" nofailback="0" ordered="1" restricted="0">
+				<failoverdomainnode name="tb170" priority="1"/>
+				<failoverdomainnode name="tb174" priority="2"/>
+			</failoverdomain>
+		</failoverdomains>
+		<resources>
+			<ip address="192.168.1.175"/>
+		</resources>
+		<service autostart="0" domain="OracleHA" exclusive="0" name="MAIN_DB" recovery="relocate">
+			<ip ref="192.168.1.175"/>
+			<oracledb
+home="/ORACLE/app/oracle/product/11.2.0/db_home1" name="YOUR_DB" type="base" listener_name="LISTENER2" user="oracle" vhost="192.168.1.175"/>
+		</service>
+	</rm>
+</cluster>
+
+
+after editing cluster.conf, dont forget to increment the 'config_version' and validate cluster.conf:
+#ccs_config_validate
+
+then copy it to other node using:
+#ccs -f file -h host --setconf
+
+or optionally, we could use command below to propagate and activate a cluster configuration file on cluster:
+#ccs -h host --sync --activate 
+
+to verify that all node have the identical conf:
+#ccs -h host --checkconf
+
+
+restart cman:
+#ccs -h host --stopall, then
+#ccs -h host --startall
+
+check cluster:
+clustat
+
+
+Only rhcs will start the oracle.
+prevent it from starting by it's own, on both server:
+find /etc/rc?.d -name '*ora*'
+then delete it.
+
+(optional)
+If we use mounted disk, prevent disk to be mounted by it's own.
+For the file system to be mounted with the oracle files to be served, do not add
+this mount information to the /etc/fstab file because only the cluster
+software can mount and unmount file systems used in a service
+(end of optional)
+
+to restart the newly added service in configuration, we can use :
+#ccs -h host --stopall, then
+#ccs -h host --startall
+
+and volla, the service is registerd when execute clustat:
+[root@centos1 ~]# clustat
+Cluster Status for some_cluster @ Wed Feb 22 10:26:51 2012
+Member Status: Quorate
+
+ Member Name                             ID   Status
+ ------ ----                             ---- ------
+ centos1                                     1 Online, Local, rgmanager
+ centos2                                     2 Online, rgmanager
+
+ Service Name                   Owner (Last)                   State
+ ------- ----                   ----- ------                   -----
+ service:my_apache_1            (none)                         disabled
+
+Local means, the node is where we execute the command clustat 
+If rgmanager did not appear in the Status category, it could indicate that cluster services are not running on the node.
+
+(Optional)
+edit /usr/share/cluster/oracledb.sh
+define in there anything related for oracle eg
+ORACLE_USER, ORACLE_HOME, ORACLE_SID, ORACLE_HOSTNAME.
+
+if you find error like:
+ rgmanager [apache] Checking Existence Of File /var/run/cluster/apache/apache:my_apache.pid [apache:my_apache] > Failed - File Doesn't Exist
+
+this means the user cannot create file /var/run/cluster/apache/xxx
+the workaround.. is to edit file in /usr/share/cluster/<coresponding-file>.sh
+to create on it's writeable directory.
+(end of Optional)
+
+
+test moving service to another node:
+#clusvcadm -r <service> -m <node>
+# clusvcadm -r YOUR_DB -m tb170
+Trying to relocate service:YOUR_DB to tb170...
+
+for testing we could use
+# rg_test test /etc/cluster/cluster.conf status oracledb YOUR_DB
+
+
+test for starting service
+#rg_test test /etc/cluster/cluster.conf start oracledb YOUR_DB
+
+
+BONDING and VIP
+we will definetely need virtual IP.
+
+to try to set virtual ip:
+ip addr add 192.168.1.20/24 dev eth0
+
+should we create bonding network for VIP or just use other NIC??
+vi /etc/sysconfig/network-scripts/ifcfg-bond0
+DEVICE=bond0
+IPADDR=132.158.201.177
+NETMASK=255.255.252.0
+GATEWAY=132.158.202.254
+USERCTL=no
+BOOTPROTO=none
+ONBOOT=yes
+BONDING_OPTS="mode=1 miimon=100" 
+
+
+vi /etc/sysconfig/network-scripts/ifcfg-bond1
+DEVICE=bond1
+IPADDR=132.158.201.187
+NETMASK=255.255.252.0
+GATEWAY=132.158.202.254
+USERCTL=no
+BOOTPROTO=none
+ONBOOT=yes
+BONDING_OPTS="mode=1 miimon=100"
+
+
+vi /etc/sysconfig/network-scritps/ifcfg-eth0
+DEVICE=eth0
+BOOTPROTO=none
+HWADDR=14:FE:B5:D8:7C:11
+ONBOOT=yes
+ONBOOT=yes
+MASTER=bond0
+SLAVE=yes
+USERCTL=no
+ifcfg-eth1
+DEVICE=eth1
+BOOTPROTO=none
+HWADDR=14:fe:b5:d8:7c:13
+ONBOOT=yes
+ONBOOT=yes
+MASTER=bond0
+SLAVE=yes
+USERCTL=no
+
+then
+#service network restart
+
+5. In order to check the bonding status, check the following file:
+# cat /proc/net/bonding/bond0
+
+vi /etc/sysconfig/network-scritps/ifcfg-eth0
+
+
+
+TESTING
+This part is used for testing the installation.
+this can be because network failure, disk failure, process failure, etc
+
+1. loss of one VIP cable.
+do : remove network cable from primary host. 
+expected result:network bonding should fail over at network level without
+affecting the cluster
+
+2. loss of network.
+do : remove all network cable from primary host
+expected result : the host should reboot. run clustat on other host to verify
+the cluster status.
+
+3. loss of access to one quorum partition test??
+4. loss of access to both quorum partition test??
+
+5. unexpected reboot 
+do : on primary host, reboot -fn
+expected result : should move to other node
+
+7. unexpected reboot on both system (blackout)
+do reboot at both server
+expected result : ???
+
+8. oracle shutown in one host
+do shutdown oracle in one node
+expected result : oracle should move to othe node
+
+
+Notes:
+Section contain ?? means it has not yet completed.
+
+
+to test a service:
+rg_test test /etc/cluster/cluster.conf status service VIP1
+
+to test a node:
+rg_test test /etc/cluster/cluster.conf status node xx
+etc
+
+so, vip is bonding from physical local IP.
+it's in main db:
+[JKT:root@DB1a:/]ifconfig -a
+bnx4: flags=1000843<UP,BROADCAST,RUNNING,MULTICAST,IPv4> mtu 1500 index 5
+        inet 10.251.163.72 netmask ffffffc0 broadcast 10.251.163.127
+        ether 78:e7:d1:f7:bb:c4 
+bnx4:1: flags=1000843<UP,BROADCAST,RUNNING,MULTICAST,IPv4> mtu 1500 index 5
+        inet 10.251.163.71 netmask ffffffc0 broadcast 10.251.163.127
+
+lets make bonding VIP.
+
+mainkan cluster in vbox, simlate vip.
+only vip for cluster
+disk, process, cpu,etc
+
+two VIP
+so need at least 3 ip
+
+make script to check oracle running,
+
+test.sh
+select 1 form dual
+
+
+cman_tool kill -n <node>
+cman_tool leave force ->execute on tb170, which resulted in tb174 fencing it.
+This time the fencing was successful, and the rgmanagers on remaining nodes
+woke up.
+
+
+rhcs list: redhat.com/mailman/listinfo/redhat-cluster
+
+
+
+ KESIMPULAN
+hari ini harus bersabar. jangan banyak bicara.
+
+
+how to configure heaartbeat redhatcluster
+how to fence redhatcluster
+how fence work on vcs?
+
+I already configure it to be able to failover, but
+sorry, I was just unable to configure fence.
+I already configure two VIP and it worked, but when one LAN is unplug, the second noded cannot know it.
+I still can't find how to configure it. sorry I will try to find out
+
+we will use HP server and the fence is HPiLO, so how it worked?
+
+
+how to Skip Startup Fencing for Nodes With No Fencing Configured (dangerous) ?
+
+
+so, now, even if node2 is reboot/shutdown, the it's vip will automatically change to other node (node1) and node1 now is using 2 vip.
+
+then when node2 is fully recovered and being restarted.. the vip2 will given to node2 again by node1. this happen all automatically
+
+the problem happen when I ifdown eth0 on node2. they not failover to node1 (I suppose because no fence)
+then when I do ifup eth0 on node2, node2 is up then strangely node1 become out of cluster and cannot join cluster anymore..
+
+
+if the cable on node tb174 is uplug, they cannot provide service and even cannot failover to tb170 because there's no fence or indicating to know that this tb174 node is accessable. how can we know?
+
+FENCING
+I think I should use fencing.
+
+ilo fencing for sure.
+ipmi fencing..?
+
+
+latest working cluster.conf
+<?xml version="1.0"?>
+<cluster config_version="33" name="some_cluster">
+	<fence_daemon clean_start="0" post_fail_delay="0" post_join_delay="3"/>
+	<cman expected_votes="1" two_node="1"/>
+	<clusternodes>
+		<clusternode name="tb170" nodeid="1" votes="1">
+			<fence>
+				<method name="single">
+					<device name="fence_1" option="off" port="2" switch="1"/>
+				</method>
+			</fence>
+		</clusternode>
+		<clusternode name="tb174" nodeid="2" votes="1">
+			<fence>
+				<method name="single">
+					<device name="fence_2" option="off" port="2" switch="1"/>
+				</method>
+			</fence>
+		</clusternode>
+	</clusternodes>
+	<fencedevices>
+		<fencedevice agent="fence_ilo" ipaddr="tb170" login="Administrator" name="fence_1" passwd="47K74VYB"/>
+		<fencedevice agent="fence_ilo" ipaddr="tb174" login="Administrator" name="fence_2" passwd="SU9JUKJJ"/>
+	</fencedevices>
+	<rm>
+		<failoverdomains>
+			<failoverdomain name="failover_to_1" nofailback="0" ordered="1" restricted="0">
+				<failoverdomainnode name="tb170" priority="1"/>
+				<failoverdomainnode name="tb174" priority="2"/>
+			</failoverdomain>
+			<failoverdomain name="failover_to_2" nofailback="0" ordered="2" restricted="0">
+				<failoverdomainnode name="tb174" priority="1"/>
+				<failoverdomainnode name="tb170" priority="2"/>
+			</failoverdomain>
+		</failoverdomains>
+		<resources>
+			<ip address="192.168.1.250" monitor_link="yes" sleeptime="10"/>
+			<ip address="192.168.1.251" monitor_link="yes" sleeptime="10"/>
+		</resources>
+		<service autostart="1" domain="failover_to_1" exclusive="0" name="VIP1" recovery="relocate">
+			<ip ref="192.168.1.250"/>
+		</service>
+		<service autostart="1" domain="failover_to_2" exclusive="0" name="VIP2" recovery="relocate">
+			<ip ref="192.168.1.251"/>
+		</service>
+	</rm>
+</cluster>
+
+$ svn list file:///var/svn/repos/some_user/trunk
+$ svn co file:///var/svn/repos/some_user/trunk/cgp
+
+
+$ svn list --verbose svn://localhost/some_user/trunk
+
+
+$ cd
+$ svnadmin create /home/some_user/test
+$ ln -s /var/svn/svn_start.sh /usr/local/bin/svnserve
+kabel stright ethernet RJ45:
+orange putih - orange - putih hijau - biru - putih biru - hijau - putih cokelat - cokelat
+
+kabel cross:
+orangeputih, orange, putihijo, biru, biruputih, hijau, putihcoklat, coklat
+
+
+mounting ufs2 in freebsd:
+mount -t ufs -r -o ufs type=ufs2 /dev/da2 /mnt/local
+dmesge | grep bsd
+
+cek hdd for error :
+fsck -t ext2 -l badblocks /dev/hdb1
+
+
+Show all installed packages or software in Linux, FreeBSD, OpenBSD :
+
+Red Hat/Fedora Core/CentOS Linux
+# rpm -qa | less
+
+Debian Linux
+# dpkg --get-selections
+
+Ubuntu Linux
+# sudo dpkg --get-selections
+
+FreeBSD
+# pkg_info | less
+# pkg_info apache
+
+Use pkg_version command to summarizes the versions of all installed packages:
+# pkg_version | less
+# pkg_version | grep 'lsof'
+
+OpenBSD
+# pkg_info | less
+# pkg_info apache
+
+install grub:
+#grub
+>root (hd0,0)
+>setup (hd0) -> mbr
+>setup (hd0,0) -> di disk
+
+input mysql database
+mysql -p -u db.name < x.sql
+
+install kde at freebsd
+portupgrade -NRP kde
+cd /usr/ports/x11/xorg
+make install clean
+
+
+install os tanpa dvd (selama masih ada grub)
+mount -o loop,ro /home/pcbsd.iso /mnt/pcbsd
+cd /mnt/pcbsd/isolinux
+cp vmlinux /boot/vmlinux1
+mount - xxx
+find / -xdev -print0 | cpio - pa0v /mnt/abc
+boot pake live cd
+mount /dev/sda5 /mnt/sda5
+
+grubinstall --root-directory=/mnt/sda5 /dev/sda5 resume=/dev/sda8
+
+dd if=/dev/sda5 of=boot.for.win bs=512 count=1
+
+bikin iso dari dvd/cd:
+dd if=/dev/cdrom of=something.iso
+
+mau ganti partisi untuk / ke hdd atau partisi baru?
+misal dari sdb5 ke sdb1
+mount /dev/sda1 /mnt/sda1
+find / -xdev -print0 | cpio - pa0V /mnt/sda1
+reboot
+#pake live cd
+mount /dev/sda1 /mnt/sda1
+grub-install --root-directory=/mnt/sda1 /dev/sda
+jgn lupa edit /etc/fstab dan /boot/grub/menu,lst
+mkswp /dev/sda5
+
+ifconfig eth0 x.x.x.x netmask 255.255.0.0 up
+route add default gw x.x.x.x dev eth0
+echo "nameserver x.x.x.x" > /etc/resolve.conf
+
+255.128.0.0
+255.192.
+
+class A 1 -127     0000 0000 0000 0000 0000 0000 0000 0000
+                   network      host     host      host
+class B 12-191  -> 1000 0000 0000 0000 0000 0000 0000 0000
+					network  network    host      host
+class C 192 223 -> 1100 0000
+                   network        network       network  host
+class D 224 239 -> multicast
+class E 240 255 -> reseach
+
+private address space                  default subnet
+class A 10.0.0.0 - 10.255.255.255    255.0.0.0
+B 172.16.0.0 - 172.31.255.255         255.255.0.0
+C 192.168.0.0 - 12.168.255.255  
+
+jumlah subnet = 2^x (dari kiri)
+jumlah host = (2^y) - 2
+
+quota ga jalan? 
+coba single user
+mount -o remount /home
+touch /home/aquota.user
+chmod 600 /home/aquota.user
+quotacheck -vagum
+soft = 0 artiya limitnya dibatasi
+repquota /home -> cek
+
+me-list semua partisi : fdisk -L
+
+title slackware
+root(hd0,0)
+kernel /boot/linux-26.x root=/dev/sda3 resume=/dev/sda3
+initrd /boot/initrd.26.21
+
+nslookup 
+set querytype=soa
+if some_domain.org
+
+bind:
+ named.conf
+ rndc.conf
+ file zone
+ 
+zona file
+$ TTL 2222000 (detik)
+@ IN SOA ns.some_domain.org some_user.some_domain.org
+        20110101 (serial)
+;A record
+mail	IN A 202.100.100.1
+        IN MX 10 mail
+
+www     CNAME server
+
+raid software in fedora:
+
+proc/mdstat -> status raid 
+
+mdadm --create --level=1 /dev/md0 --raid -device=2 /dev/sda1 /dev/sda2
+mkfs /dev/md0
+
+mdadm --detal --scan > /etc/mdadm.conf
+
+/etc/dbus-l/system.d/hal.conf
+policy group = "users"
+
+biar orang ga bs mak secure/single user dan ngeganti password
+/etc/ttys
+ganti baris console non unknown off secure
+ganti secure jadi insecure
+
+win:
+runas /u:administrator cmd
+
+bsd:
+which startkde > .xinitrc
+mount -r -t ufs -o ufstype=44bsd /dev/sda2 /mnt/bsd
+dmesge | grep bsd
+>> P1 : <bsd : P5P6>
+
+mount -o remount -O netdev /home
+
+find /boot/grub/stage1
+root (hd0,6)
+setup (hd0,6)
+quit
+
+map (hd0) (hd1)
+map (hd1) (hd0)
+
+setup --stage=/boot/grub/stage2 (hd0,6) (hd0,6)
+
+ro root=LABEL=/ enforcing=1 rhgb quite 3 
+
+showopts
+noresume
+nosmp
+noapic
+acpi=off
+apm=off
+
+#uuidgen | printf
+
+menjalankan service hanya pada run level tertentu di system redhat:
+#chkconfig --level 35 smb on
+
+untuk mengetahui shell apa yang sdg kita gunakan ketikkan:
+#echo $SHELL
+
+
+
+To remove the ^M characters at the end of all lines in vi, use:
+:%s/^V^M//g
+
+The ^v is a CONTROL-V character and ^m is a CONTROL-M. When you type this, it will look like this:
+:%s/^M//g
+
+so with other charater, eg ^H ^K ^G ^[[
+
+In UNIX, you can escape a control character by preceeding it with a CONTROL-V. The :%s is a basic search and replace command in vi. It tells vi to replace the regular expression between the first and second slashes (^M) with the text between the second and third slashes (nothing in this case). The g at the end directs vi to search and replace globally (all occurrences).
+
+or we can use:
+for example a.txt containt control M, ^M:
+cat a.txt | col -b > newfile.txt
+
+or 
+#col -bx <dosfile> newfile.txt 
+
+newfile.txt is free of ^M.
+
+menyetting waktu dan tanggal system :
+===================================
+1. #date [mmddhhnnyyyy]
+   keterangan:
+   mm = bulan
+   dd = tanggal
+   hh = jam (format 24 jam)
+   nn = menit
+   yyyy = tahun
+
+2. #/sbin/hwclock --systohc
+   keterangan:
+   perintah ini menuliskan waktu system ke hardware, jika tidak dilakukan 
+   maka ketika reboot waktu akan kembali ke kondisi semula
+
+
+ssh tunneling:
+==============
+ssh -R 8080:c1.telk.co.id:22 some_user@202.100.100.2
+ssh -L 8081:tujuan.sebenarnya.com:80 some_user@tujuan.sementara.com
+
+
+
+unix terminal keyboard sortcut (mostly in bash terminal) :
+=========================================================
+ctrl p = previous command
+ctrl n = next commmand
+ctrl a = move to first character
+ctrl e = move to end characte
+ctrl b = move one character to left
+ctrl f = move one character to right
+ctrl h = remomve (same function as backspace)
+ctrl m = same as enter
+ctrl d = delete current character 
+ctrl i = same as tab
+ctrl u = remove from cursort to begining 
+
+Ctrl-A	Move the cursor to the beginning of the command line.
+Ctrl-B	Move the cursor back one character.
+Ctrl-C	Break out of the command without any change to the settings.
+Ctrl-D	Delete the character at the cursor.
+Ctrl-E	Move the cursor to the end of the command line.
+Ctrl-F	Move the cursor forward one character.
+Ctrl-I	Recall a complete command name; same as the Tab key operation.
+Ctrl-K	Delete all characters from the cursor to the end of the command line
+Ctrl-L	Redisplay the current command line, same as the Ctrl-R key.
+Ctrl-N	Recall the most recent command in the command history relative to the current pointer in the history list.
+Ctrl-P	Recall the oldest command in the command history, beginning with the most recent command.
+Ctrl-R	Redisplay the current command line; same as Ctrl-L key.
+Ctrl-T	Transpose the characters to the left of the cursor with the character located at the cursor.
+Ctrl-U	Delete all characters from the cursor to the beginning of the command line.
+Ctrl-V	Insert a code to indicate that the immediately following value is a command entry.
+Ctrl-W	Delete the word to the left of the cursor.
+Ctrl-X	Delete all characters from the cursor to the beginning of the command line.
+Ctrl-Y	Recall the most recent entry in the buffer (which contains the last ten items you deleted).
+Esc-B	Move the cursor back one word.
+Esc-C	Capitalize the word at the cursor.
+Esc-D	Delete from the cursor to the end of the word.
+Esc-F	Move the cursor forward one word.
+Esc-L	Change the word at the cursor to lowercase.
+Esc-Q	Insert a code to indicate that the immediately following value is a command entry.
+Esc-U	Capitalize letters from the cursor to the end of the word.
+Esc-Y	Recall the next deleted buffer. (Effective after using Ctrl-Y.)
+
+
+menambahkan ip alias di linux:
+==============================
+Please edit the file:
+vi /etc/sysconfig/network-scripts/ifcfg-eth0:1
+like this:
+-----------------------------------------------
+DEVICE=eth0:1
+BOOTPROTO=static
+BROADCAST=192.168.100.255
+IPADDR=192.168.100.254
+NETMASK=255.255.255.0
+NETWORK=192.168.100.0
+ONBOOT=yes
+-----------------------------------------------
+then run "/etc/init.d/network restart" to restart the network.
+
+
+lupa password root FreeBSD:
+===========================
+Jika kita lupa password root di FreeBSD system, maka coba reboot mesin kita ke single-user lalu :
+#mount -u / -> ini untuk ngemount root file system dengan format rw
+#mount /usr -> jika punya partisi yang berbeda untuk usr-nya, maka lakukan hal ini, karena program 'passwd' ada di situ.
+#passwd root -> kita harus nulis root-nya, karena pada mode single-user ini, system tidak kenal konsep user ID, klo passwd aja tak kenal dia, cmiiw
+
+
+SWAP ALL ABOUT
+
+There are lots of ways you can figure out how much swap use in a machine. 
+Common suggestions use formulas based on RAM such as 2 x RAM, 1.5 x RAM, 1 x RAM, .75 x RAM, and .5 x RAM. Many times the formulas are varied depending on the amount of RAM (so a box with 1GB of RAM might use 2 x RAM swap (2GB), while a box with 16GB of ram might use .5 x RAM swap (8GB).
+
+Another thing to consider is what the box will be used for. If you're going to have a huge number of concurrently running processes running on the box, but a significant number of them will be idle for periods of time, then adding extra swap makes sense. If you're going to be running a small number of critical processes, then adding extra swap makes sense (this might seem counter-intuitive, but I'll explain in a minute). If you're running a box as a desktop, then adding extra swap makes sense.
+
+As for whether you should include swap, yes, you should. You should always include swap space unless you really know what you're doing, and you really have a good reason for it.
+
+See, the way the Linux kernel works, swap isn't only used when you have exhausted all physical memory. The Linux kernel will take applications that are not active (sleeping) and after a period of time, move the application to swap from real memory. The result is that when you need that application, there will be a momentary delay (usually just a second or two) while the application's memory is read back from swap to RAM. And this is usually a good thing.
+
+This allows you to put inactive applications to "sleep", giving your active applications access to additional RAM. Additionally, Linux will use any available (unallocated) RAM on a machine as disk cache, making most (slow) disk activity faster and more responsive. Swapping out inactive processes gives you more disk cache and makes your machine overall faster.
+
+Lastly, let's face it, disk space is cheap. Really cheap. There's really no good reason at all not to swipe a (relatively) small chunk of space for swap. If I were running with 2GB - 4GB of RAM in a machine, I'd probably setup my swap space to be at least equal to the RAM. If it were less than 2GB of RAM, then I'd still go with at least 2GB of swap.
+
+UPDATE: As an excellent comment mentioned (and I forgot to include), if you're running a laptop or a desktop that you might want to put in 'hibernate' mode (Suspend to Disk), then you always want at least as much swap as you have memory. The swap space will be used to store the contents of the RAM in the computer while it 'sleeps'.
+
+
+make /etc/resolv.conf never changed. nerver get updated :
+
+1. make it unchangeable
+in linux(ext3) :
+chattr +i /etc/resolv.conf
+-> atribut i : write protect file in linux, no one can modify it
+in freebsd:
+chflags
+
+or
+
+2. configure dhclient.conf
+vi /etc/dhclient.conf or /etc/dhcp/dhclient.conf
+and add this :
+option domain-name-servers 8.8.8.8, 8.8.4.4, 202.54.1.2, 199.2.3.4, 124.1.5.22
+
+
+==catatan.ubuntu==
+----------------
+install chrome:
+google.com/chrome, download version you want.
+install additional package:
+dpkg -i google-stable.deb
+install package that missing by
+pkg-add install libcurl13 libnspr4-0d
+
+set google.com as default search engine:
+tutup chrome,edit file :
+vi ~/.config/google-chrome/Local\ State
+apus .co.id, ganti jadi .com
+run chrome again
+
+to remove chat&email&im in bar:
+apt-get remove indicator-me indicator-messages
+
+to install guest aditional in vbox
+first install dkms
+apt-get install dkms
+
+
+
+install backlight function for ubuntu : 
+https://launchpad.net/asus-keyboard-backlight
+
+disable bluetooth at startup :
+#update-rc.d -f bluetooth remove
+
+remove bluetooth-applet:
+#vi /etc/xdg/autostart/bluetooth-applet.desktop
+NoDisplay=true -> NoDisplay=false
+#vi /etc/xdg/autostart/bluetooth-applet-unity.desktop
+NoDisplay=true -> NoDisplay=false
+
+remove guest account in ubuntu 12.04:
+vi /etc/lightdm/lightdm.conf
+tambahkan at the end:
+allow-guest=false
+
+
+==install-linux-without-cd-dvd==
+
+Donlot iso os yang akan diinstall. Dalam hal ini aku memakai ubuntu 9.04.
+ada 2 opsi:
+	1 kalau punya windows, pakai wubi. dapat di donlot saat mendonlot iso
+	2 kalau sudah punya grub, bisa digunakan grub.
+	
+akan dijelaskan 1
+letakkan file iso di folder yang sama dengan wubi installernya. misalnya letakkan di D:\data dengan isi folder tersebut D:\data\wubi.exe dan D:\data\ubuntu-9.04.iso
+
+
+akan dijelaskan 2
+
+misalkan kita telah install linux pada disk pertama partisi ke 5.
+masuk linux kita dan su root
+misalkan iso kita berada pada disk 1 partisi ke 2 folder /data/ubuntu-9.04.iso
+
+mount file iso kita ke satu tempat misal /install
+#mount -o loop /data/ubuntu-9.04.iso /install
+
+ini bagian penting : copy initrd.img dan vmlinuz ke partisi /boot linux kita saat ini
+#cp /install/initrd.img /boot/initrd-new.img
+#cp /install/vmlinuz /boot/vmlinuz-new
+
+edit grub di /boot/grub/menu.lst
+tambahkan :
+title install now
+root (hd0,4)
+initrd /boot/initrd-new.img
+kernel /boot/vmlinuz-new
+
+reboot dah boot from disk -> pakai opsi install now
+
+==end of install-linux-without-cd-dvd==
+
+
+== find dependencies for a rpm file:==
+ rpm -qpR <rpmfiles>.rpm
+ rpm -qR <package-name>
+
+
+
+********************
+catatan awk sed grep
+********************
+
+grep -w <word> file.txt --> to grep the exact <word>
+
+awk -F":" '{ print $1 " " $3 }' /etc/passwd 
+
+awk '{ FS=":" ; print $1 }' /etc/passwd
+
+# print and sort the login names of all users
+awk -F ":" '{print $1 | "sort" }' /etc/passwd
+ 
+# print any line where field #5 is equal to "abc123"
+awk '$5 == "abc123"'
+
+
+
+==rename content of multile files==
+update script in $ORACLE_HOME/bin after move it's $ORACLE_HOME directory
+how to rename multiple file?
+from 10.2.0 to 11.2 in $ORACLE_HOME/bin
+
+find . -type f | xargs sed 's/10.2.0/11.2/d' ??
+
+find . -print0 | xargs -0 sed -i 's/10\.2\.0/11.2/g' 
+
+find . | xargs -L1 sed -i 's/10\.2\.0/11\.2/g'
+
+find . -type f -print0 | xargs -0 sed -i 's/ha/har/g'
+
+find . -type f -exec sed -i 's/ha/some_user/g' {} +
+
+find /home/www/ -type f -exec perl -i.bak -pe 's/some_user/yoyo/g' {} +
+
+-exect --> invoke command proccess as many as the result found
+xargs will invoke command only once
+the problem is sed -i is only for GNU sed.
+should we install GNU sed on this oracle?
+==end of rename content of multile files==
+
+
+awk trick:
+----------
+to print 9th column that contain regex which started with S:
+awk '$9 ~ /regex/' :
+ls -l /etc/rc?.d/ | awk '$9 ~ /^S/'
+
+remove line in .know_hosts :
+------------------
+delete line 5 from .known_hosts :
+sed -i 5d ~/.known_hosts
+
+
+to easyly find&replace path in a file using sed:
+sed 's|/some/UNIX/path|/a/new/path|g' files.txt
+
+
+grep -l some_user *
+output the file(s) in current directory that contain word 'some_user'
+
+find
+----
+find . -maxdepth 5
+find . -uid some_user
+find . -gid sys<8a>
+find . -iname
+find . -perm -g=w
+find . -size 30M (b, k, M, G)
+find . -size +30M
+find . -size -30M
+find . -type (d, l, f)
+
+
+CHANGE LOGIN ID
+---------------
+to change uid some_user to atport at sigma server
+and change folder /some_user to /atport
+
+[root@TB174 /]# umount /atport
+vi /etc/fstab
+#mv /some_user /atport
+#usermod -l atport some_user 
+#vi /etc/group
+vi /etc/passwd -> change homedir
+#id atport
+#usermod -d /atport atport
+#id atport
+#su - atport
+#pwd
+#cat /etc/passwd 
+
+
+to transpose (table becomes column) at linux use :
+#tr '\n' ' ' < sms_result.txt
+
+apache virtualhost
+===================
+to make all request to test.your_company.com is redirected to 110.100.100.11 we could use:
+in http.conf in tb151:
+Include atport.conf
+vi atport.conf
+NameVirtualHost *:80
+<VirtualHost *:80>
+  ServerName test.your_company.com
+  RewriteEngine on
+  RewriteRule ^/(.*) http://110.100.100.11:8001/$1 [L,R=301]
+</VirtualHost>
+
+done
+
+
+=iptables=
+cat /etc/sysconfig/iptables
+# Generated by iptables-save v1.4.7 on Tue May 29 13:50:29 2012
+*nat
+:PREROUTING ACCEPT [16:1162]
+:POSTROUTING ACCEPT [5242:297347]
+:OUTPUT ACCEPT [5242:297347]
+-A PREROUTING -p tcp -m tcp --dport 80 -j REDIRECT --to-ports 8003 
+-A OUTPUT -d 127.0.0.1/32 -p tcp -m tcp --dport 80 -j REDIRECT --to-ports 8003 
+-A OUTPUT -d 127.0.0.1/32 -p tcp -m tcp --dport 80 -j REDIRECT --to-ports 8003 
+COMMIT
+# Completed on Tue May 29 13:50:29 2012
+
+
+install xen on centos5:
+disable selinux, then reboot
+create bridge network:
+
+
+download the xen repo :
+
+[root@el6xen ~]# cat /etc/yum.repos.d/kernel-xen.repo
+[kernel-xen]
+name=kernel-xen
+#baseurl=http://www.crc.id.au/repo/$basearch/
+mirrorlist=http://www.crc.id.au/repo/mirrorlist.txt
+enabled=1
+gpgcheck=1
+gpgkey= file:///etc/pki/rpm-gpg/RPM-GPG-KEY-kernel-xen
+        http://www.crc.id.au/repo/RPM-GPG-KEY-kernel-xen
+~
+
+then install
+
+known hosts
+===========
+to disable known hosts checking in ssh-ing to other server, edit/create file ~/.ssh/config:
+
+Host *
+    StrictHostKeyChecking no
+	
+This will turn it off for all hosts you connect to.
+atau
+per command aja, saat menjalankan ssh:
+ssh -o StrictHostKeyChecking=no yourHardenedHost.com
+vi, ngerikah?
+hoho vi, lebih canggihnya vim (VIMprove) menurut awak editor keren. 
+tangguh, effisien, dsb. tapi klo dibanding sama notepad++ jelaslah kalah :P 
+tapi dihati awak, tetap vim :P
+
+kemaren ada teman yang bilang pas lagi ngerjain tugas
+"pake vi?, ga ada yg lain, yg lebih gampang?"
+dulu awak bilang kek gitu juga, tapi keknya vim bisa dibilang gampang deh. 
+-> terutama untuk edit2 configurasi di *nix. di windows pun sudah ada vim 
+for windows(gvim)
+klo kow di terminal, the best menurut awak ya itu, vim.
+sampe sekarang vim tetap dikembangkan. Dah sampe versi 7.3xx (cmiiw)
+
+oke deh, bukan sok tau ato apa, cuman mo meracuni, diberi sikit tips2 yang 
+biasa awak pakai :
+
+Langkah pertama. Umumnya mo mulai vim, ketik 
+$vim
+di terminal tar bakal keluar editor yg blom ada isinya, ato klo dah tau file 
+apa yg mo diedit, tinggal 
+$vim fileku.txt
+
+menuju ke tempat tertentu dari fileku, 
+$vim +60 fileku.txt -> bakal ke baris 60 di fileku (sangat gampang bagi 
+programer, melihat bug dsb)
+
+okeh, dah masuk vim :D
+mo pindah-pindah, gampang...
+   j
+ h   l
+   k
+pake arah yg ada dikeyboard jg bs
+ingat hjlk bs digunakan di mode command, by pressing esc.
+
+untuk menulis, ketik dulu insert mode
+bisa pake i, I, a, A, o, O. untuk sekarang i aja dulu :P
+
+sila ketik. selesai ketik, tekan 'esc', ':', 'w', dan 'q'.
+
+i-> insert at the left of current cursor
+I-> insert at the begining of current line
+a-> insert at the right  of current cursor
+A-> insert at the end of current line
+o-> insert one line below current line
+O-> insert one line above current line
+
+search :
+
+untuk memastikan di mode command, sila ketik esc dulu.
+
+untuk mencari sila 
+/kata yang dicari
+
+biar pencarian tidak case sensitive, sila ketik
+:set ic -> ignore case sensitive
+
+searching in vim:
+/bandung\|jakarta -> search for bandung or jakarta
+
+untuk replace, ketik 
+:%s/user/some_user/gc
+akan mencari kata user untuk digantikan dengan kata some_user, g untuk semua, 
+c untuk bertanya, apakah mau diganti. hehe3
+
+
+esc : normal mode
+~ : toggle case
+` : goto mark ( need a char argument afterwards)
+! : external filter
+1 :untuk register yank/paste/delete. eg: ay$ mengkopi seluruh sisa line dan 
+disimpan ke reg a
+1234567890 kek gitu juga
+@ play macro (need a char argument ..
+# prev ident
+$ end of line
+% goto match
+^ soft begining of line
+& : repeate :s
+* : next indent
+( : begin sentence
+) : end sentence
+0 : hard begining of line
+_ : soft beginining of line, down
+- : prev line
++ : next line
+= : auto format
+Q : ex mode
+q : record macro (need a char ...
+W : next word eg : abc(def,| bar,|
+w : next word eg : abc|(|def|, bar|, 
+E : end word eg : eg : abc(def,| bar,|
+e : end word eg lihat w 
+R : replace mode (insert mode)
+r : replace char (need a char..
+T : back until (need a char
+t : until (need a char ..)
+Y : yank line
+y : yank (bs yy)
+U : undo line
+u : undo
+I : Insert at begining of line
+i : insert mode
+O : open above
+o : open below
+P : paste before
+p : paster after
+{ : begin paragraf
+[ : misc (need a char ..
+} : end paragraf
+] : misc (need a char...
+A : append at end of line
+a : append
+S : subsitute line
+s : subsitute char
+D : delete to end of line
+d : delete
+F : back find char (need a char ..
+f : find char (need a char ..
+G : end of file / goto line
+g : extra comands	eg. gg : top of file (vim only)
+gf : open file under cursor (vim only)
+H : screen top
+h : <- kiri
+J : join lines
+j : bawah
+K : help
+k : atas
+L : screen bottom 
+l : kanan
+: : excute command line
+; : repeate t/T/f/F
+" : reg spec (need a char
+' : go to mark begining of line ( need a cher
+| : begining of line / go to colom
+\ : not used
+Z : quit , ZZ utk save and quit, ZQ utk quit no save
+z : extra comands . eg : zt : scroll cursor to top
+zb : bottom
+zz : center
+X : backspace
+x : delete char
+C : change to colom
+c : change
+V : visual line
+v : visual mode
+B : prev WORD
+b : prev word
+N : prev (find)
+n : next (find)
+M : screen middle
+m : set mark
+< : unindent
+, : reverse t/T/f/F
+> : indent
+. : repeate command
+? : find (reverse)
+/ : find
+
+
+
+when starting vi, to go to first occurent of <string>, we can use:
+vi +/<string> file
+eg:
+vi +/JKT_IVRTSM1b_SERVICE /etc/hosts, akan menuju langsung ke 
+JKT_IVRTSM1b_SERVICE.
+
+or we want to go to specific line
+vi +50 fileku
+this will bring us to the 50th line of fileku.
+
+in vi, type :sp for spliting the windows (mendatar), dan pindah dengan 
+ctrl-w lalu arah, j(bawah) dan k(atas), h ke kiri dan l ke kanan.
+ :sp filename (horizontal)
+ :vsp filename (vertical)
+
+atau dapat menggunakan control:
+Ctrl-W s for horizontal splitting
+Ctrl-W v for vertical splitting
+Ctrl-w q to close one
+
+in terminal:
+#vi -o[N]                Open N windows (default: one for each file)
+#vi -O[N]                Like -o but split vertically
+
+in vi, ketik :e! utk kembali ke awal, original
+
+
+to insert from a command, in vi use:
+:r !date
+this will print output of date to the content of vi
+:r !whoami
+:r!pwd
+
+
+edit vimrc di windows
+open gvim
+:e _vimrc
+edit :
+set guifont=Consolas:h10:cANSI
+colors slate
+
+
+7j -> move 7 baris ke bawah
+dw -> delete a word
+* -> cari kata yang sedang ditunjuk kursor (cool)
+:new ~/Desktop/coba.txt -> open file coba.txt in new window in vim (cool)
+:tabe -> go to tab edit
+:tabn -> go to next tab
+:tabp -> go previous tab
+
+v -> to start visual, and you can select text, eg to copy using arrow comand
+or any text movement to move around. (DAMN...THIS IS PRETTY COLL, I didn't know about this...Agghh..)
+V -> visual yang bekerja pada baris
+
+to input from standard output just use vim -R - (there's dash at the end)
+eg:
+chkconfig --list | vim -R - => will invoke vim which contain output of
+chkconfig
+
+
+:Vex or :Sex --> to browse file system and press to open the file
+Vex=Vertical split explor
+Sex=Split explor
+
+command line completetion in vim.
+for example you want to know command start with a, type
+:a  then without space, followed by <ctrl-D> 
+this will give you autocompletion a, and see possible completions:
+abbreviate  amenu       argdelete   arglocal    augroup
+abclear     anoremenu   argdo       args        aunmenu
+aboveleft   append      argedit     argument    autocmd
+all         argadd      argglobal   ascii
+
+you can also use <tab> hehe
+
+oh, gw baru tau.. ilmu baru..
+you can select (and it will automatically store in cliboard, in other name, it
+coppied) then you can paste it by middle mouse button, or two tap
+simustaniously. yep
+select a text, then go to any other you wnat to paste, then you middle click
+there / doubletap at once there, the text will be pasted. COOLLLLLL
+
+regular expression:
+[...] -> match any character from the set
+[^...] -> match any character outside the set
+[...-...] -> any character from range
+[^...-...] -> any character outside range
+\< -> begining of word, eg /\<London matchs every line with begin with London
+\> -> end of word
+    
+ 
+to copy all line type
+:%y
+to copy from current line to the end,press y followed by G
+     
+to join line type J, if you want to join 5 lines at one time, type 
+5 then J
+
+to repeat last action, type .
+if you want to execute it 5 times, type 5 followed by <dot>
+
+redo or undo
+u, U, R
+
+to execute command while in vi, execute
+:!<your-command>
+eg:
+:!pwd
+
+while in vi, if you want to go to shell, type
+:sh
+and when you exit shell, you will be back at vi.
+
+
+
+open file with single press:
+to open file with filename is under current cursor, press gf, then it will
+automatically open this file
+
+
+in vim:
+to enter commandline history, type
+'q' then ':'
+
+
+
+to disable .viminfo :
+add to .vimrc
+set viminfo="NONE" 
+
+
+
+GREAT vimtips:
+make lowercase:
+---------------
+in vim, to make all lines to lower case  -> guG
+
+folding in vim:
+---------------
+open folding -> click left(h) or right(l) or zo
+close folding -> zc
+
+autocompletion in vim:
+--------------------
+ctrl-N (AWESOME.....)
+
+jump to tags:
+-------------
+use ctrl-] to jump to tags
+to go back -> ctrl-T
+
+keyboard mapping in vim
+-------------------------
+this could be really useful:
+:nmap - Display normal mode maps
+:imap - Display insert mode maps
+:vmap - Display visual and select mode maps
+:smap - Display select mode maps
+:xmap - Display visual mode maps
+:cmap - Display command-line mode maps
+:omap - Display operator pending mode maps
+
+I just knew.. that ESC can be replace by ctrl-[
+
+
+to remove menubar and status bar in virtualbox:
+VBoxManage setextradata global GUI/Customizations noMenuBar,noStatusBar
+
+to restore:
+/usr/bin/VBoxManage setextradata global GUI/Customizations MenuBar,StatusBar
+
+
+how to extend your windows activation, but there is a catch:
+http://www.daniel-mitchell.com/blog/reset-windows-7-rearm-count/
+
+
+upgrade from fedora 21 to fedora 22:
+====================================
+current kernel:
+---------------
+uname -a
+Linux asus 3.19.7-200.fc21.x86_64 #1 SMP Thu May 7 22:00:21 UTC 2015 x86_64
+x86_64 x86_64 GNU/Linux
+
+upgrading steps:
+----------------
+rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-22-$(uname -i)
+yum update yum
+yum clean all
+yum --releasever=22 distro-sync
+
+
+new kernel:
+-----------
+uname -a
+Linux asus 4.0.4-301.fc22.x86_64 #1 SMP Thu May 21 13:10:33 UTC 2015 x86_64
+x86_64 x86_64 GNU/Linux
+
+
+when I upgrading, I got failed in kernel-core.x86 0:3.19.5-200.fc21 because I
+had to go out and I had to bring my laptop with me.
+nevertheless, everything seems to work perfectly.
+
+whats new in fedora 22:
+one thing I notice is dnf, it replaces yum.
+
+yum
+Yum command has been deprecated, redirecting to '/usr/bin/dnf '.
+See 'man dnf' and 'man yum2dnf' for more information.
+To transfer transaction metadata from yum to DNF, run:
+'dnf install python-dnf-plugins-extras-migrate && dnf-2 migrate'
+
+also GNOME is new!
+
+
+remove more unused app:
+dnf remove gnome-font-viewer
+dnf remove gucharmap
+dnf remove gnome-system-monitor
