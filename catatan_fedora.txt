@@ -3972,6 +3972,13 @@ to restore:
 how to extend your windows activation, but there is a catch:
 http://www.daniel-mitchell.com/blog/reset-windows-7-rearm-count/
 
+C:\Windows\system32>slmgr /dlv
+..
+..
+Remaining Windows rearm count: 2
+Trusted time: 5/26/2015 11:12:16 AM
+
+
 
 upgrade from fedora 21 to fedora 22:
 ====================================
@@ -4016,3 +4023,5 @@ remove more unused app:
 dnf remove gnome-font-viewer
 dnf remove gucharmap
 dnf remove gnome-system-monitor
+dnf remove baobab -> disk analyzer
+dnf remove system-config-date
