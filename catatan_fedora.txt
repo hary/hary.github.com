@@ -4025,3 +4025,5 @@ dnf remove gucharmap
 dnf remove gnome-system-monitor
 dnf remove baobab -> disk analyzer
 dnf remove system-config-date
+dnf remove system-config-users
+dnf remove system-config-printer
