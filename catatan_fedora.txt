@@ -4031,3 +4031,6 @@ dnf remove system-config-printer
 #install anki flash card:
 dnf install anki
 
+copy ignore:
+rsync -rv --exclude=LOG /suatu/folder/sumber /media/WD
+
