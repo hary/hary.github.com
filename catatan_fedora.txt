@@ -4034,3 +4034,8 @@ dnf install anki
 copy ignore:
 rsync -rv --exclude=LOG /suatu/folder/sumber /media/WD
 
+
+install fedora 22 on asus x200ma
+20 Jun 2015
+--------------------------------
+
