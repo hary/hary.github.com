@@ -4039,3 +4039,78 @@ install fedora 22 on asus x200ma
 20 Jun 2015
 --------------------------------
 
+first and for most: update bios, download from http://www.asus.com/support/Download/3/544/0/3/w0z9TBcK9ycJ3Jzl/30/
+
+set partition, set /boot/efi
+
+
+
+delete all unsed packages:
+x
+x
+video -> dnf remove totem totem-nautilus
+gnome system monitor : dnf remove gnome-system-monitor
+font viewer : dnf remove gnome-font-viewer
+empathy : dnf remove empathy
+disk usage analyzer : dnf remove baobab
+contact : dnf remove gnome-contacts
+character map : dnf remove gucharmap
+screen reader : dnf remove orca
+
+seahorse
+dnf remove system-config-date
+dnf remove system-config-users
+dnf remove system-config-printer
+
+
+enable arabic input
+
+
+install rpm fussion
+su -c 'yum install --nogpgcheck http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm'
+
+
+
+install vlc
+
+
+
+install chrome
+cat << EOF > /etc/yum.repos.d/google-chrome.repo
+[google-chrome]
+name=google-chrome - \$basearch
+baseurl=http://dl.google.com/linux/chrome/rpm/stable/\$basearch
+enabled=1
+gpgcheck=1
+gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
+EOF
+
+dnf install google-chrome-stable
+
+
+install flash
+rpm -ivh http://linuxdownload.adobe.com/adobe-release/adobe-release-x86_64-1.0-1.noarch.rpm
+rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-adobe-linux
+dnf install flash-plugin
+
+
+install adblock for chrome
+install adblock plus for firefox
+
+go to extensions.gnome.org/local:
+enable alternative tab
+enable lauch new instance
+
+
+install java jdk 1.8:
+http://www.if-not-true-then-false.com/2014/install-oracle-java-8-on-fedora-centos-rhel/
+
+install virtualbox
+http://www.if-not-true-then-false.com/2010/install-virtualbox-with-yum-on-fedora-centos-red-hat-rhel/
+
+
+edit .bashrc
+
+and moreeee...
+
+
