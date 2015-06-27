@@ -4108,9 +4108,33 @@ http://www.if-not-true-then-false.com/2014/install-oracle-java-8-on-fedora-cento
 install virtualbox
 http://www.if-not-true-then-false.com/2010/install-virtualbox-with-yum-on-fedora-centos-red-hat-rhel/
 
+install screen
+dnf install screen
+
 
 edit .bashrc
 
 and moreeee...
 
+-----------------
+
+well, this is new, at least I just knew this: there is no more /var/log/messages
+it was replaced by journalctl -f
+
+and the other thing,if you want to remove folder ~/Desktop (I dont need this folder,hehe) go to :
+vi /etc/xdg/user-dirs.conf
+change enabled=True to enabled=False
+and you are done.
+
+orrr
+
+go to ~/.config/user-dirs.dirs, edit as you wish:
+XDG_DESKTOP_DIR="$HOME/"
+XDG_DOWNLOAD_DIR="$HOME/"
+XDG_TEMPLATES_DIR="$HOME/"
+XDG_PUBLICSHARE_DIR="$HOME/"
+XDG_DOCUMENTS_DIR="$HOME/"
+XDG_MUSIC_DIR="$HOME/"
+XDG_PICTURES_DIR="$HOME/"
+XDG_VIDEOS_DIR="$HOME/"
 
