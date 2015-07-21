@@ -131,15 +131,16 @@ SELECT table_name FROM dba_tables where owner='HCHMCP';
 
 
 
-sort rpm by size
+sort rpm by size:
 $ rpm -qa --queryformat '%10{size} - %-25{name} \t %{version}\n' | sort -n
 
 
-find big file:
+find big file and sorted:
 # du -a /home/ > big_files.txt
 # sort -nk1 big_files.txt  >> big_sorted.txt
 
 
+how to use alternatives:
 # alternatives --config java
 
 There are 3 programs which provide 'java'.
@@ -152,14 +153,13 @@ There are 3 programs which provide 'java'.
 
 # update-alternatives --config java
 
-
 # update-alternatives --remove "java" "/usr/java/jdk1.7.0_25/bin/java"
 
 
 
 
-sort by column 2:
-du -s /home | sort -nk2
+how to sort by 2nd column:
+# du -s /home | sort -nk2
 
 
 
@@ -1388,6 +1388,15 @@ disable services:
 #systemctl disable cups.service
 #systemctl disable lvm2-monitor.service
 #systemctl disable abrtd.service
+
+#disable finger print:
+systemctl stop fprintd 
+systemctl disable fprintd 
+
+
+to check what process took the longest in startup,issue:
+systemd-analyze blame
+
 
 # systemctl stop system-setup-keyboard.service
 # systemctl disable system-setup-keyboard.service
@@ -4126,9 +4135,9 @@ vi /etc/xdg/user-dirs.conf
 change enabled=True to enabled=False
 and you are done.
 
-orrr
+orrr, if that didnt work, go to ~/.config/user-dirs.dirs, 
+edit as you wish:
 
-go to ~/.config/user-dirs.dirs, edit as you wish:
 XDG_DESKTOP_DIR="$HOME/"
 XDG_DOWNLOAD_DIR="$HOME/"
 XDG_TEMPLATES_DIR="$HOME/"
@@ -4138,3 +4147,71 @@ XDG_MUSIC_DIR="$HOME/"
 XDG_PICTURES_DIR="$HOME/"
 XDG_VIDEOS_DIR="$HOME/"
 
+
+rename network interface back to eth0:
+-------------------------------------
+1. Edit /etc/default/grub
+2. At the end of GRUB_CMDLINE_LINUX line append "net.ifnames=0 biosdevname=0"
+3. Save the file
+4. Type "grub2-mkconfig -o /boot/grub2/grub.cfg"
+
+# grub2-mkconfig -o /boot/grub2/grub.cfg 
+Generating grub configuration file ...
+Found linux image: /boot/vmlinuz-4.0.6-300.fc22.x86_64
+Found initrd image: /boot/initramfs-4.0.6-300.fc22.x86_64.img
+Found linux image: /boot/vmlinuz-4.0.5-300.fc22.x86_64
+Found initrd image: /boot/initramfs-4.0.5-300.fc22.x86_64.img
+Found linux image: /boot/vmlinuz-4.0.4-303.fc22.x86_64
+Found initrd image: /boot/initramfs-4.0.4-303.fc22.x86_64.img
+Found linux image: /boot/vmlinuz-0-rescue-fb970e6a519f4acb8409ebb55ae89ad6
+Found initrd image: /boot/initramfs-0-rescue-fb970e6a519f4acb8409ebb55ae89ad6.img
+done
+
+5. Type "reboot"
+
+
+
+change hostname :
+------------------
+# hostnamectl set-hostname asus
+
+# hostnamectl 
+   Static hostname: asus
+         Icon name: computer-laptop
+           Chassis: laptop
+        Machine ID: fb970e6a519f4acb8409ebb55ae89ad6
+           Boot ID: a2cad53a2913418d8276a0089fdf8126
+  Operating System: Fedora 22 (Twenty Two)
+       CPE OS Name: cpe:/o:fedoraproject:fedora:22
+            Kernel: Linux 4.0.6-300.fc22.x86_64
+      Architecture: x86-64
+
+
+
+================================================================================
+Sat Jul 18 01:12:50 WIB 2015
+
+to produce that result, do this in vi(m):
+:r!date
+
+The point is to insert the result of your-command directly to your current line, type :r!<your-command>
+
+and you are welcome!
+
+================================================================================
+
+
+I just found this out.
+You want to download youtube in bulk?  
+You only need 3 steps:
+
+# curl https://yt-dl.org/latest/youtube-dl -o /usr/local/bin/youtube-dl
+
+# chmod a+rx /usr/local/bin/youtube-dl
+
+$ youtube-dl https://www.youtube.com/playlist?list=PLZOMeQdKoVUis5AXHz5DDe1X8aVhEXhVB
+
+downloading now...
+
+
+=====
