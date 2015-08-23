@@ -526,6 +526,8 @@ git clone https://github.com/some_user/some_user.github.com.gitmask url
 domain will be masked you only see addreess, and content is diferrent
 web forwarding
 
+one ssh-key is only for one github account. if you have more than one github account, you would need more than one terminal account.
+
 
 apakah anda mau pindah partisi karena merasa partisi ke 5 (/dev/sdb5) terlalu jauh dari /dev/sda dan ingin mengurutkan secara teratur partisi anda
 atau partisi /dev/sdb5 telah penuh, dan telah di lakukan mount sana mount sini.
@@ -872,7 +874,7 @@ download flashplayer from get.adobe.com/flashplayer
 download the 64bit rpm and install it using:
 rpm -ivh <flash_player_name>.rpm
 
-disable 631/tcp open  ipp
+disable 631/tcp open ipp
 #/etc/init.d/cups stop
 # chkconfig cups off
 
@@ -1359,7 +1361,7 @@ after finished intall fedora:
 #yum install wget
 #wget https://dl-ssl.google.com/linux/linux_signing_key.pub (not necessary, I suppose)
 #rpm --import linux_signing_key.pub (not necessary, I suppose)
-download latest stable chrome from http://google.com/chrome  
+download latest stable chrome from http://google.com/chrome 
 #yum install redhat-lsb
 #rpm -ivh google-chrome-stable_current_x86_64.rpm
 
@@ -1389,9 +1391,13 @@ disable services:
 #systemctl disable lvm2-monitor.service
 #systemctl disable abrtd.service
 
+
 #disable finger print:
-systemctl stop fprintd 
-systemctl disable fprintd 
+# systemctl disable fprintd.service
+# systemctl stop fprintd.service
+
+ini bisa di disable ga? penting kah?
+# systemctl status plymouth-quit-wait.service
 
 
 to check what process took the longest in startup,issue:
@@ -1408,6 +1414,7 @@ systemd-analyze blame
 
 
 to edit grub2 to make windows firstboot
+=======================================
 #grep Windows /boot/grub2/grub.cfg
 #grub2-set-default "Windows 7 (loader) (on /dev/sda2)"
 #grub2-editenv list
@@ -1730,7 +1737,7 @@ salah besar, hmm.. jadi di mana ini buat remove IM Notification di gnome itu?
 
 
 yum search gnome-shell-theme -> theme
-yum search nimbus  -> opensholaris theme
+yum search nimbus -> opensholaris theme
 
 back to old gnome:
 rpm -e gnome-panel
@@ -1743,9 +1750,9 @@ userdel -r oracle
 
 =======
 how to get yesterday date in bash?
-date -d ’1 day ago’ +%Y%m%d   or
-date -d ’yesterday’ +%F       or
-date --date 'yesterday' +%F-%H-%M-%S   or
+date -d ’1 day ago’ +%Y%m%d or
+date -d ’yesterday’ +%F or
+date --date 'yesterday' +%F-%H-%M-%S or
 date -d @`echo $((\`date +%s\` - 86400))` +%Y%m%d or
 date --date='-1 day' or
 intinya:
@@ -1764,8 +1771,8 @@ Find tomorrow's date
 Type the following command
 date --date="-1 days ago" Or
 date --date="next day" +%F
-date --date='tomorrow'         
-date --date='1 day'             
+date --date='tomorrow'
+date --date='1 day'
 date --date='10 day'
 date --date='10 week'
 date --date='10 month'
@@ -1937,7 +1944,7 @@ net start npf
 
 ------------
 
-to check what is the yum, use whatprovides:   
+to check what is the yum, use whatprovides:
 # yum whatprovides 'perl(Net::LDAP)'
 # yum whatprovides libapphb.so.2
 
@@ -1949,7 +1956,7 @@ if you have problem with ld-linux.so.2
 yum install glibc.i686
 
 to view open port at linux
-# netstat -plnt | grep ':80'  
+# netstat -plnt | grep ':80' 
 
 ===========================
 Java control panel location:
@@ -2063,7 +2070,7 @@ untuk opitimasi, hal yang penting untuk dilakukan adalah sbb :
 a. sebelum merubah configurasi squid.conf ada baiknya kita perlu mengbackup file squid.conf
 #cp squid.conf squid.conf.ori
 
-b. ganti domain alamat dan port serta administrator  yang diinginkan
+b. ganti domain alamat dan port serta administrator yang diinginkan
 - cari kata cache_mem, kemudian masukan nilai yang dimasukkan. sebagai perbandingan pada server cache-stei saat ini menggunakan cache-mem = 32 mega
 - cari kata cache_dir, merupakan tempat diletakkannya file cache. tempat defaultnya telah ada tetapi bila ingin diganti bisa dirubah di sini
 sebagai perbandingan di server cache /var/spool/squid/cache 
@@ -2286,7 +2293,7 @@ Load balancing
 Load-balancing clusters dispatch network service requests to multiple cluster
 nodes to balance the request load among the cluster nodes. Load balancing
 provides cost-effective scalability because you can match the number of nodes
-according to load requirements.  
+according to load requirements. 
 If a node in a loadbalancing cluster becomes inoperative, the load-balancing 
 software detects the failure and redirects requests to other cluster nodes. 
 Node failures in a load-balancing cluster are not visible from clients outside
@@ -2311,7 +2318,7 @@ The minimum installation of RedHat Cluster consists of :
 Steps (assume that we already finished installing Centos):
 
 mostly, you need to execute the rest of the step on both of node that we will
-install cluster on,  unless otherwise stated.
+install cluster on, unless otherwise stated.
 
 Install packages (if not yet installed during OS installation):
 #yum groupinstall "High Availability"
@@ -2400,11 +2407,11 @@ luci : application server that provides the user interface for Conga ->
 https://server-addr:8084
 ricci : node agent, users pass configuration details using the Luci interface,
 and the configuration is loaded in to corosync for distribution to cluster
-nodes.  
+nodes. 
 One luci server can communicate with multiple ricci agents.
 
 
-Create default cluster configuration file (/etc/cluster/cluster.conf):   
+Create default cluster configuration file (/etc/cluster/cluster.conf):  
 
 To create skeleton configuration for cluster named some_cluster with 2 nodes that has
 no vote:
@@ -3687,7 +3694,7 @@ sila ketik. selesai ketik, tekan 'esc', ':', 'w', dan 'q'.
 
 i-> insert at the left of current cursor
 I-> insert at the begining of current line
-a-> insert at the right  of current cursor
+a-> insert at the right of current cursor
 A-> insert at the end of current line
 o-> insert one line below current line
 O-> insert one line above current line
@@ -3895,12 +3902,11 @@ regular expression:
 [^...-...] -> any character outside range
 \< -> begining of word, eg /\<London matchs every line with begin with London
 \> -> end of word
-    
  
 to copy all line type
 :%y
 to copy from current line to the end,press y followed by G
-     
+ 
 to join line type J, if you want to join 5 lines at one time, type 
 5 then J
 
@@ -3941,7 +3947,7 @@ set viminfo="NONE"
 GREAT vimtips:
 make lowercase:
 ---------------
-in vim, to make all lines to lower case  -> guG
+in vim, to make all lines to lower case -> guG
 
 folding in vim:
 ---------------
@@ -4202,7 +4208,7 @@ and you are welcome!
 
 
 I just found this out.
-You want to download youtube in bulk?  
+You want to download youtube in bulk? from playlist or single video
 You only need 3 steps:
 
 # curl https://yt-dl.org/latest/youtube-dl -o /usr/local/bin/youtube-dl
@@ -4213,5 +4219,17 @@ $ youtube-dl https://www.youtube.com/playlist?list=PLZOMeQdKoVUis5AXHz5DDe1X8aVh
 
 downloading now...
 
+for more info:
+$ youtube-dl --help
+
+the simple way:
+$ youtube-dl <your-youtube-link>
+
 
 =====
+
+set cpu speed:
+cd /sys/device/system/cpu/
+cd cpu0/cpufreq
+??
+I forget... let me check it back.
