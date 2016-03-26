@@ -33,7 +33,7 @@ yum -y groups install "GNOME Desktop"
 
 
 
-routeadd telk di zone + kabel:
+routeadd di suatu kantor di zone + kabel:
 netstat -nr
 Kernel IP routing table
 Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface
@@ -95,12 +95,12 @@ $ vncviewer -via some_user@192.168.0.174 localhost:1
 
 
 
-[JKT:some_user@FrontUI05:/some_user]sqlplus rbtrpt/rbtrpt@rpt1a/RBTRPT
+[JKT:some_user@som5:/some_user]sqlplus oracle_user/oracle_password@oracle_host/oracle_sid
 
 
 mv /etc/localtime /etc/localtime.ori
 [root@TB115 ~]# ln -s /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
-[root@TB115 ~]# date 010816562015  ->> MMDDhhmmYYYY
+[root@TB115 ~]# date 010816562015 ->> MMDDhhmmYYYY
 
 [root@TB115 ~]# hwclock --systohc
 [root@TB115 ~]# hwclock 
@@ -137,7 +137,7 @@ $ rpm -qa --queryformat '%10{size} - %-25{name} \t %{version}\n' | sort -n
 
 find big file and sorted:
 # du -a /home/ > big_files.txt
-# sort -nk1 big_files.txt  >> big_sorted.txt
+# sort -nk1 big_files.txt >> big_sorted.txt
 
 
 how to use alternatives:
@@ -214,7 +214,7 @@ vi /etc/xinetd.d/rlogin
 set disable=yes to disable=no
 
 /etc/init.d/xinetd restart
-echo "+ +" >  ~/.rhosts
+echo "+ +" > ~/.rhosts
 chmod go-rwx ~/.rhosts
 
 oracle client in centos:
@@ -397,6 +397,8 @@ geany
 orca
 pidgin
 nano
+gnome-software
+
 
 install:
 google.com/chrome
@@ -826,9 +828,9 @@ count=0
 total=0
 while [[ $server -le 7 ]]
 do
-        echo "InfraUI0$server BUFFER CDR count : $count"
-        total=$((total+count))
-        server=$((server+1))
+ echo "InfraUI0$server BUFFER CDR count : $count"
+ total=$((total+count))
+ server=$((server+1))
 
 done
 
@@ -874,7 +876,7 @@ download flashplayer from get.adobe.com/flashplayer
 download the 64bit rpm and install it using:
 rpm -ivh <flash_player_name>.rpm
 
-disable 631/tcp open ipp
+disable port 631/tcp open ipp
 #/etc/init.d/cups stop
 # chkconfig cups off
 
@@ -918,6 +920,8 @@ gucharmap(gnu char map) -> also remove gnome-applets
 remove m17n -> language support
 remove all language font support
 remove old kernel (rpm -e kernel<version_old>)
+gnome-software -> we dont need this, we use dnf update aka yum
+vinagre -> utk remote destkop, rarely use it... so dont really need it
 
 (the point is to make it as light as possible)
 
@@ -954,7 +958,7 @@ udev-post      	0:off	1:on	2:on	3:on	4:on	5:on	6:off
 
 
 install ntfs support on centos:
----------------------------------
+-------------------------------
 first install rpm-forge repo.
 import key:
 #rpm --import http://apt.sw.be/RPM-GPG-KEY.dag.txt
@@ -970,7 +974,7 @@ if ok then, then install it
 now you can install ntfs suport using yum
 #yum install fuse fuse-ntfs-3g 
 
-if you don't use rpm-forge anymores, just remove them form /etc/yum.repos.d
+if you don't use rpm-forge anymore, just remove them form /etc/yum.repos.d
 
 Mounting an NTFS filesystem
 ---------------------------
@@ -980,10 +984,10 @@ create the mount point /media/sda3.
 mkdir -p /media/sda3
 
 then edit /etc/fstab. To mount read-only:
-/dev/sda1       /media/sda3   ntfs-3g  ro,umask=0222,defaults 0 0 
+/dev/sda1 /media/sda3 ntfs-3g ro,umask=0222,defaults 0 0 
 
 To mount read-write:
-/dev/sda1       /media/sda3   ntfs-3g  rw,umask=0000,defaults 0 0 
+/dev/sda1 /media/sda3 ntfs-3g rw,umask=0000,defaults 0 0 
 
 You can now mount it by running:
 mount /media/sda3
@@ -993,7 +997,7 @@ mount.ntfs /dev/sda3 /media/sda3 -o rw,nosuid,nodev,uhelper=udisks,uid=500,gid=5
 done
 
 disable splashscreen/splashimage on boot/shutdown:
-------------------------------------------
+--------------------------------------------------
 vi /etc/grub.conf
 remove 2 words at the last of a line that's are: 'rhgb' and 'quiet'
 done
@@ -1012,7 +1016,7 @@ http://www.imminentweb.com/technologies/centos-disable-unneeded-services-boot-ti
 
 
 install firefox 10 at centos 64bit:
----------------------------------
+-----------------------------------
 download latest firefox at:
 https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/latest/
 
@@ -1068,7 +1072,7 @@ set autochdir
 
 
 make autocomplete a command from history (just like in BSD):
------------------------------------------------------------
+------------------------------------------------------------
 to search a command (that has been executed fews times ago) in history in comand prompt, 
 type ctrl-R to search for previous command in history.
 (reverse-i-search)`': 
@@ -1185,7 +1189,7 @@ Comment=Open with Vim
 Icon=utilities-terminal
 Categories=Development;
 
-then edit file default.list and/or  mimeapps.list (if there's any, in directory that contain .desktop, eg /usr/share/applications, /usr/local/share/applicationsetc), go to section 'text/plain' and alter it with vim.desktop
+then edit file default.list and/or mimeapps.list (if there's any, in directory that contain .desktop, eg /usr/share/applications, /usr/local/share/applicationsetc), go to section 'text/plain' and alter it with vim.desktop
 eg:
 text/plain=gedit.desktop;vim.desktop;
 
@@ -2411,7 +2415,7 @@ nodes.
 One luci server can communicate with multiple ricci agents.
 
 
-Create default cluster configuration file (/etc/cluster/cluster.conf):  
+Create default cluster configuration file (/etc/cluster/cluster.conf):
 
 To create skeleton configuration for cluster named some_cluster with 2 nodes that has
 no vote:
@@ -2980,6 +2984,7 @@ rhcs list: redhat.com/mailman/listinfo/redhat-cluster
  KESIMPULAN
 hari ini harus bersabar. jangan banyak bicara.
 
+=====================================================
 
 how to configure heaartbeat redhatcluster
 how to fence redhatcluster
@@ -3228,7 +3233,7 @@ biar orang ga bs mak secure/single user dan ngeganti password
 ganti baris console non unknown off secure
 ganti secure jadi insecure
 
-win:
+windows:
 runas /u:administrator cmd
 
 bsd:
@@ -3305,7 +3310,7 @@ menyetting waktu dan tanggal system :
 
 ssh tunneling:
 ==============
-ssh -R 8080:c1.telk.co.id:22 some_user@202.100.100.2
+ssh -R 8080:c1.some_server.co.id:22 some_user@202.100.100.2
 ssh -L 8081:tujuan.sebenarnya.com:80 some_user@tujuan.sementara.com
 
 
@@ -3424,7 +3429,7 @@ pkg-add install libcurl13 libnspr4-0d
 set google.com as default search engine:
 tutup chrome,edit file :
 vi ~/.config/google-chrome/Local\ State
-apus .co.id, ganti jadi .com
+ganti .co.id, ganti jadi .com
 run chrome again
 
 to remove chat&email&im in bar:
@@ -3545,7 +3550,7 @@ awk '$9 ~ /regex/' :
 ls -l /etc/rc?.d/ | awk '$9 ~ /^S/'
 
 remove line in .know_hosts :
-------------------
+----------------------------
 delete line 5 from .known_hosts :
 sed -i 5d ~/.known_hosts
 
@@ -3609,6 +3614,7 @@ done
 
 
 =iptables=
+----------
 cat /etc/sysconfig/iptables
 # Generated by iptables-save v1.4.7 on Tue May 29 13:50:29 2012
 *nat
@@ -3623,6 +3629,7 @@ COMMIT
 
 
 install xen on centos5:
+-----------------------
 disable selinux, then reboot
 create bridge network:
 
@@ -3653,6 +3660,8 @@ This will turn it off for all hosts you connect to.
 atau
 per command aja, saat menjalankan ssh:
 ssh -o StrictHostKeyChecking=no yourHardenedHost.com
+
+================================================================================
 vi, ngerikah?
 hoho vi, lebih canggihnya vim (VIMprove) menurut awak editor keren. 
 tangguh, effisien, dsb. tapi klo dibanding sama notepad++ jelaslah kalah :P 
@@ -3834,8 +3843,8 @@ Ctrl-W v for vertical splitting
 Ctrl-w q to close one
 
 in terminal:
-#vi -o[N]                Open N windows (default: one for each file)
-#vi -O[N]                Like -o but split vertically
+#vi -o[N] Open N windows (default: one for each file)
+#vi -O[N] Like -o but split vertically
 
 in vi, ketik :e! utk kembali ke awal, original
 
@@ -3848,6 +3857,7 @@ this will print output of date to the content of vi
 
 
 edit vimrc di windows
+---------------------
 open gvim
 :e _vimrc
 edit :
@@ -3855,22 +3865,21 @@ set guifont=Consolas:h10:cANSI
 colors slate
 
 
-7j -> move 7 baris ke bawah
-dw -> delete a word
-* -> cari kata yang sedang ditunjuk kursor (cool)
+7j  -> move 7 baris ke bawah
+dw  -> delete a word
+*   -> cari kata yang sedang ditunjuk kursor (cool)
 :new ~/Desktop/coba.txt -> open file coba.txt in new window in vim (cool)
-:tabe -> go to tab edit
-:tabn -> go to next tab
-:tabp -> go previous tab
+:tabe  -> go to tab edit
+:tabn  -> go to next tab
+:tabp  -> go previous tab
 
-v -> to start visual, and you can select text, eg to copy using arrow comand
+v  -> to start visual, and you can select text, eg to copy using arrow comand
 or any text movement to move around. (DAMN...THIS IS PRETTY COLL, I didn't know about this...Agghh..)
-V -> visual yang bekerja pada baris
+V  -> visual yang bekerja pada baris
 
 to input from standard output just use vim -R - (there's dash at the end)
 eg:
-chkconfig --list | vim -R - => will invoke vim which contain output of
-chkconfig
+chkconfig --list | vim -R - => will invoke vim which contain output of chkconfig
 
 
 :Vex or :Sex --> to browse file system and press to open the file
@@ -3977,6 +3986,10 @@ this could be really useful:
 I just knew.. that ESC can be replace by ctrl-[
 
 
+================================================================================
+virtualbox vboxmanage
+---------------------
+
 to remove menubar and status bar in virtualbox:
 VBoxManage setextradata global GUI/Customizations noMenuBar,noStatusBar
 
@@ -3996,7 +4009,7 @@ Trusted time: 5/26/2015 11:12:16 AM
 
 
 upgrade from fedora 21 to fedora 22:
-====================================
+================================================================================
 current kernel:
 ---------------
 uname -a
@@ -4019,7 +4032,7 @@ x86_64 x86_64 GNU/Linux
 
 
 when I upgrading, I got failed in kernel-core.x86 0:3.19.5-200.fc21 because I
-had to go out and I had to bring my laptop with me.
+had to go out of the office and I had to bring my laptop with me.
 nevertheless, everything seems to work perfectly.
 
 whats new in fedora 22:
@@ -4044,11 +4057,14 @@ dnf remove system-config-users
 dnf remove system-config-printer
 
 #install anki flash card:
+-------------------------
 dnf install anki
 
 copy ignore:
+------------
 rsync -rv --exclude=LOG /suatu/folder/sumber /media/WD
 
+================================================================================
 
 install fedora 22 on asus x200ma
 20 Jun 2015
@@ -4071,8 +4087,8 @@ disk usage analyzer : dnf remove baobab
 contact : dnf remove gnome-contacts
 character map : dnf remove gucharmap
 screen reader : dnf remove orca
+seahorse password and key : dnf remove seahorse
 
-seahorse
 dnf remove system-config-date
 dnf remove system-config-users
 dnf remove system-config-printer
@@ -4131,7 +4147,8 @@ edit .bashrc
 
 and moreeee...
 
------------------
+
+================================================================================
 
 well, this is new, at least I just knew this: there is no more /var/log/messages
 it was replaced by journalctl -f
@@ -4153,9 +4170,10 @@ XDG_MUSIC_DIR="$HOME/"
 XDG_PICTURES_DIR="$HOME/"
 XDG_VIDEOS_DIR="$HOME/"
 
+================================================================================
 
-rename network interface back to eth0:
--------------------------------------
+rename those wierd network interface back to eth0:
+--------------------------------------------------
 1. Edit /etc/default/grub
 2. At the end of GRUB_CMDLINE_LINUX line append "net.ifnames=0 biosdevname=0"
 3. Save the file
@@ -4176,9 +4194,10 @@ done
 5. Type "reboot"
 
 
+================================================================================
 
 change hostname :
-------------------
+-----------------
 # hostnamectl set-hostname asus
 
 # hostnamectl 
@@ -4197,6 +4216,8 @@ change hostname :
 ================================================================================
 Sat Jul 18 01:12:50 WIB 2015
 
+insert date in vim
+------------------
 to produce that result, do this in vi(m):
 :r!date
 
@@ -4206,30 +4227,123 @@ and you are welcome!
 
 ================================================================================
 
-
+download youtube from command line
+----------------------------------
 I just found this out.
-You want to download youtube in bulk? from playlist or single video
+You want to download youtube in bulk from playlist or single video?
 You only need 3 steps:
 
-# curl https://yt-dl.org/latest/youtube-dl -o /usr/local/bin/youtube-dl
+1. # curl https://yt-dl.org/latest/youtube-dl -o /usr/local/bin/youtube-dl
 
-# chmod a+rx /usr/local/bin/youtube-dl
+2. # chmod a+rx /usr/local/bin/youtube-dl
 
-$ youtube-dl https://www.youtube.com/playlist?list=PLZOMeQdKoVUis5AXHz5DDe1X8aVhEXhVB
+3. $ youtube-dl https://www.youtube.com/playlist?list=PLZOMeQdKoVUis5AXHz5DDe1X8aVhEXhVB
 
 downloading now...
 
 for more info:
 $ youtube-dl --help
 
-the simple way:
+the simpliest way:
 $ youtube-dl <your-youtube-link>
 
 
-=====
+untuk mengecek format yang tersedia utk didownload
+
+$ youtube-dl -F <your-youtube-link>
+nanti akan dikasih tahu, seperti contoh berikut:
+[info] Available formats for eyllcgfY6Ro:
+format code  extension  resolution note
+140          m4a        audio only DASH audio  132k , m4a_dash container, aac  @128k (44100Hz), 78.53MiB
+160          mp4        256x144    DASH video  130k , avc1.4d400c, 30fps, video only, 68.91MiB
+133          mp4        426x240    DASH video  267k , avc1.4d4015, 30fps, video only, 152.05MiB
+134          mp4        640x360    DASH video  327k , avc1.4d401e, 30fps, video only, 184.00MiB
+135          mp4        852x480    DASH video  710k , avc1.4d401f, 30fps, video only, 402.25MiB
+136          mp4        1278x720   DASH video 1411k , avc1.4d401f, 30fps, video only, 819.24MiB
+17           3gp        176x144    
+36           3gp        320x240    
+5            flv        400x240    
+18           mp4        640x360    
+22           mp4        1280x720   (best)
+
+kalau mau download yg mp4 (audio+video) tinggal pilih format code 18:
+$ youtube-dl -f 18 <your-youtube-link>
+
+
+
+================================================================================
 
 set cpu speed:
+--------------
 cd /sys/device/system/cpu/
 cd cpu0/cpufreq
 ??
 I forget... let me check it back.
+
+================================================================================
+
+anki : add words from csv
+
+if we want to add our vocabs to anki to help us learn a thing, we can simply write it down on csv file and upload it to anki, using anki desktop.
+write your vocabs and use some distinct delimeter, such as : (or anyting you want, tab is also possible)
+go to anki dekstop, create deck (if you want to populate new words into one), open that deck, and klik from menu "File -> Import"
+
+make sure you are on the right deck and make sure the delimeter.
+then click on Import button. and then close the dialog box.
+done you are good to go.
+
+
+================================================================================
+
+how add fonts in linux manually
+==========
+# cd
+# wget some_domain.com/some_font.otf
+# mkdir .fonts
+# cp some_font.otf .fonts
+# fc-cache -v
+
+
+clean your vlc interface :
+=================================================
+cd /usr/lib64/vlc/plugins/services_discovery
+cd /usr/lib64/vlc/lua/
+move all files in those directory to some places eg your home dir to back them up, or else, just delete them
+
+enjoy...
+
+
+==============================================
+cara mengembalikan icon vlc ke normal di bulan desember
+
+bulan desember biasanya ada gambar topi di icon vlc
+saya telah coba manual, tapi ndak berhasil :(.
+dari hasil google (dan berhasil) berikut caranya :
+1. Tools -> Preferences
+2. di kiri bawah, show setting saat ini di simple, pilih show settings ke "all"
+3. di menu kiri, klik 
+Interface -> Main interfaces -> Qt
+4. scrol kebawah, liat tulisan "Allow automatic icon changes". sekarang posisinya tercentang, maka untuk menghapus gambar topi itu, uncentang aja "Allow automatic icon changes".
+5. Save
+6. done
+
+
+pindahkan flash player setting dari Sundry ke tempat lain, misal Utilities
+grep -i sundry /etc/xdg/menus/gnome-applications.menu
+vi /etc/xdg/menus/gnome-applications.menu
+pindahkan baris 
+    <Filename>flash-player-properties.desktop</Filename>
+dari bagian
+    <Name>Sundry</Name>
+ke bagian
+    <Name>Utilities</Name>
+
+save, and log out. then login again
+turned out, this is not working for GNOME session but it worked for Classic Gnome session :(
+nampaknya harus pake gconf editor, and I am too lazy to install it.
+so I just move the /usr/share/applications/flash-player-properties.desktop file to some other place, and you good to go.
+
+-----
+
+ingin membersihkan "Activities" menu dari app app yang ndak berguna? biar lebih luas dan fresh, go to /usr/share/applications, then move the .desktop yang bersesuaian yang ingin dihilangkan. misal flashplayer, screenshoot,help dll.
+ini tidak menghapus dari sistem, tapi hanya menghapus dari "Activities" menu. I like it
