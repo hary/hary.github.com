@@ -4347,3 +4347,8 @@ so I just move the /usr/share/applications/flash-player-properties.desktop file 
 
 ingin membersihkan "Activities" menu dari app app yang ndak berguna? biar lebih luas dan fresh, go to /usr/share/applications, then move the .desktop yang bersesuaian yang ingin dihilangkan. misal flashplayer, screenshoot,help dll.
 ini tidak menghapus dari sistem, tapi hanya menghapus dari "Activities" menu. I like it
+
+
+gnome tips:
+---------
+when you are on natilus (or Files), type ctrl+s , so you can choose file / folder from currenct view, with regex.
