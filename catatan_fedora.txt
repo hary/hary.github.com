@@ -605,7 +605,9 @@ GIMP:0000FF;LH:50;LW:95;L:http://www.leesjordan.net/social/ffa_
 logoth109.jpg;S:http://;FORID:1"></input>
 <input type="hidden" name="hl" value="en"></input>
 </td></tr></table>
-</form><!-- SiteSearch Google -->install openssh in solaris 10
+</form><!-- SiteSearch Google -->
+
+install openssh in solaris 10
 
 1. download openssh from internet, for example from
 ftp://ftp.demos.su/pub/sunfreeware/intel/10/openssh-5.2p1-sol10-x86-local.gz
@@ -4352,3 +4354,49 @@ ini tidak menghapus dari sistem, tapi hanya menghapus dari "Activities" menu. I 
 gnome tips:
 ---------
 when you are on natilus (or Files), type ctrl+s , so you can choose file / folder from currenct view, with regex.
+
+
+
+disable rescue kernel 
+----------------------
+I never use it though:
+# vi /usr/lib/dracut/dracut.conf.d/02-rescue.conf
+change :
+dracut_rescue_image="yes"
+to :
+dracut_rescue_image="no"
+
+
+insert standing alif (alif berdiri) through libre:
+=================================================
+type
+ctrl+shift+u (which will turn into letter u, with underscore)
+then type the 4 digits code right away..
+0670 or simply 670
+u670
+and you get it, it will change automatically
+
+
+=======================
+write a command result to vim
+just use vi followed by 'dash' - 
+or use vi<(your_command)
+
+for example 
+cat /etc/passwd | grep a | vi -
+vi <(cat /etc/passwd | grep a )
+remember to write it like this : <( 
+also, this second command is readonly by default, you need to save it other place
+:w ~/new_file.txt
+
+
+=======
+start vi(m) in arabic mode
+vim -A
+
+sip, done
+
+to edit Linux Hotspot password :
+run:
+> nm-connection-editor 
+and edit your Hostspot's password
