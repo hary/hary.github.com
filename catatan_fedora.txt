@@ -4396,6 +4396,7 @@ vim -A
 
 sip, done
 
+=======
 to edit Linux Hotspot password :
 run:
 > nm-connection-editor 
@@ -4785,3 +4786,209 @@ Options:
 
 ==========
 
+nmcli :
+status :
+nmcli radio wifi
+
+hidup/matikan wifi:
+nmcli radio wifi on
+nmcli radio wifi off
+
+scan dan list semua wifi terdekat:
+nmcli device wifi list
+
+refresh list sebelumnya:
+nmcli device wifi rescan
+
+konek ke AP (no pass)
+nmcli device wifi connect <SSID>
+
+konek ke AP yg ada pass:
+nmcli device wifi connect <SSID> password <passwd-nya>
+
+source: http://fedoraproject.org/wiki/Networking/CLI#Wifi
+
+==============
+
+how to wget google drive
+
+misal ada link:
+https://drive.google.com/file/d/00B81k55qrlWAOaGJfaldRT2IwdmM/view?usp=sharing
+maka Id document tsb adalah : 00B81k55qrlWAOaGJfaldRT2IwdmM
+
+bisa kita download dengan wget dan curl
+
+wget "https://drive.google.com/uc?export=download&id=ID_DOCUMENT_TSB"
+curl -L -o file.out "https://drive.google.com/uc?export=download&id=ID_DOCUMENT_TSB"
+
+contoh :
+wget "https://drive.google.com/uc?export=download&id=00B81k55qrlWAOaGJfaldRT2IwdmM"
+
+curl -L -o file.out 
+"https://drive.google.com/uc?export=download&id=00B81k55qrlWAOaGJfaldRT2IwdmM"
+
+
+================
+
+root@asus ~]# lshw -class memory
+bash: lshw: command not found...
+Install package 'lshw' to provide command 'lshw'? [N/y] n
+
+apa apain ini, hapus aja dah..
+[root@asus ~]# dnf remove PackageKit-command-not-found-1.1.5-1.fc25.x86_64 
+
+
+[root@asus ~]# vi .bash_profile 
+isikan:
+
+unset command_not_found_handle
+=====
+
+
+
+catatan_screen_and_tmux
+-----------------------
+screen -S nama_screenmu
+#memulai dengan nama
+
+screen -ls 
+#ngelist
+
+	1751.pts-0.u	(04/12/2017 09:23:06 AM)	(Detached)
+
+#resume the detached screen:
+screen -r 1751
+#maka akan kembali ke screen tsb
+
+to know if I am not screen or not :
+echo $STY
+1751.pts-0.u
+
+
+ada lagi utility: script
+
+
+untuk record semua yang kita tulis ke sebuah file
+
+ada lagi namanya tmux (mirip screen)
+
+split horizontal
+ctrl-b %
+
+split vertial
+ctrl-b "
+
+pindah pane :
+ctrl-b (arrow : atas, bawah, kanan, kiri)
+
+bikin window  baru:
+ctrl-b c
+
+pindah window:
+ctrl-b p (prev)
+ctrl-b n (next)
+ctrl-b (nomor) (untuk menuju ke nomor tertentu)
+
+
+detach session:
+ctrl-b d
+ctrl-b D
+
+list current session:
+tmux ls
+
+untuk connect ke suatu session:
+tmux attach -t 0
+
+memulai dengan memberi nama sesi:
+tmux new -s <nama_sesiku>
+
+rename session:
+tmux rename-session -t 0 <nama_sesiku>
+
+search for help:
+ctrl-b ?
+
+full screen :
+ctrl-b z
+
+resize pane:
+ctrl-b ctrl-<arroaw: up,down,left,right>
+
+
+to scroll :
+ctrl-b [ (then use arrow, up and down)
+
+
+=================
+
+return menubar in sublime 3:
+vi ~/.config/sublime-text-3/Local/Session.sublime_session
+change "menu_visible": false,
+to "menu_visible": true,
+
+
+
+====
+wow, once again, I was blown away by vim
+http://vim.wikia.com/wiki/Making_a_list_of_numbers
+
+
+for example I want rename this, but using number,
+
+mv PA2E3OYbHI 120.mp3
+mv HvbSQxGhkT 120.mp3
+mv hKjV9AJPUO 120.mp3
+mv YMF93ksJKc 120.mp3
+mv 91FDHSNOEm 120.mp3
+mv FRnQ3hG7JY 120.mp3
+mv XtQq4AsPNa 120.mp3
+mv rGFKYvqXpZ 120.mp3
+mv UORVgKnmc2 120.mp3
+mv p98J4UxIaL 120.mp3
+mv AEjFVhYTfG 120.mp3
+mv KgG2qF6Lzv 120.mp3
+mv NT9M78VqE5 120.mp3
+mv cJpf2Gsmg4 120.mp3
+mv 1TXxLkhv8G 120.mp3
+mv rhy5nc7AEH 120.mp3
+mv nBW04LsUja 120.mp3
+mv YkymIDVvnc 120.mp3
+mv tTSx3d84ha 120.mp3
+mv stOEThdX1J 120.mp3
+
+
+what we would do is
+block the number, using visual bock (ctrl-V) , yup big V : it means you need to press ctrl+shift+a
+select until the end of file
+then press
+g , yup g
+ctrl-A , yup big A , it means you need to press ctrl+shift+a
+
+
+==
+
+mencari file yang dipunyai root
+find . -user root
+
+mencari file yang tidak dipunyai root
+find . ! -user root
+
+========
+
+wget the source code of html:
+
+wget -qO- http://google.com  (ke terminal)
+wget -q -O outputfile.txt http://google.com  (ke output file)
+
+-min qi
+-min ow (big o)
+
+best.. lah, simple
+
+wget -bc -i url.txt
+
+========
+
+vim
+:e  ===>> untuk update file, jika file tersebut di edit oleh orang lain

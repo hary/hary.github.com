@@ -513,3 +513,17 @@ hary@ubuntu:~$ ls -a | grep e | xargs file
 .lesshst:                  ASCII text
 .profile:                  ASCII text
 
+
+===
+in virtualbox, to switch to tty2,tty3,tty4,tty5,tty6, press :
+[HostKey] + F1,
+[HostKey] + F2,
+..
+[HostKey] + F6,
+
+
+============
+update
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get dist-upgrade
