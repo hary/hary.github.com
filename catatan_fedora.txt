@@ -4991,4 +4991,13 @@ wget -bc -i url.txt
 ========
 
 vim
-:e  ===>> untuk update file, jika file tersebut di edit oleh orang lain
+:e  ===>> untuk update file, jika file tersebut di edit oleh editor lain
+
+====
+cara cepat bikin file binary 1GB :
+# fallocate -l 1G output.txt
+
+
+==
+disable chrome stories in chrome android:
+
